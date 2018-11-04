@@ -3,7 +3,7 @@ class Landing extends Component {
 	render() {
 		return (
 			<div className = "container">
-				<h1>In the name of 车震 震震震! This will be our landing page</h1>
+				<h1>别以为我找不着这个！</h1>
 			</div>
 		);
 	}
