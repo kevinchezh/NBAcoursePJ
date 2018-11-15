@@ -10,22 +10,22 @@ require("./services/passport");
 mongoose.connect(dev.mongoURI);
 const app = express();
 //below this to create mysql connection using mysql package
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
-  host     : dev.mySQL_URL,
-  user     : dev.mySQL_USER,
-  password : dev.mySQL_PASSPORT,
-  database: dev.mySQL_DATABASE_NAME
-});
+// var mysql      = require('mysql');
+// var connection = mysql.createConnection({
+//   host     : dev.mySQL_URL,
+//   user     : dev.mySQL_USER,
+//   password : dev.mySQL_PASSPORT,
+//   database: dev.mySQL_DATABASE_NAME
+// });
  
-connection.connect(function(err) {
-  if (err) {
-    console.error('error connecting: ' + err.stack);
-    return;
-  }
+// connection.connect(function(err) {
+//   if (err) {
+//     console.error('error connecting: ' + err.stack);
+//     return;
+//   }
  
-  console.log('connected as id ' + connection.threadId);
-});
+//   console.log('connected as id ' + connection.threadId);
+// });
 //sql connection part over
 app.use(cookieSession({
   name: 'session',
