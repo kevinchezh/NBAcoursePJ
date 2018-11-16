@@ -10,14 +10,56 @@ class PlayerIndex extends Component {
     render(){
         return (
             <div>
-                {/*  */}
                 <PlayerForm />
+                
+                
+                    {this.renderSearchResult()}
+                
+                
+                
             </div>
         )
     }
+    renderSearchResult(){
+        console.log("renderSearchResult")
+        console.log(this.props.player);
+        if(this.props.player.length>0){
+            console.log("inside map");
+            return this.props.player.map(oneRow => {
+                return (
+                    
+                        <div key = {oneRow.PLAYER_ID + oneRow.year} className="card" >
+                            {/* <img className="card-img-top" src="https://kodi.tv/sites/default/files/styles/medium_crop/public/addon_assets/plugin.video.nba/icon/icon.png?itok=UANlCIrN" alt="Card image cap"></img> */}
+                            <div className="card-body">
+                                <h5 className="card-title">{oneRow.PLAYER}</h5>
+                                {/* <p className="card-text"></p> */}
+                            </div>
+                            <ul className="list-group list-group-flush">
+                                <li className="list-group-item">year: {oneRow.year}</li>
+                                <li className="list-group-item">PTS: {oneRow.PTS}</li>
+                                <li className="list-group-item">REB: {oneRow.REB}</li>
+                                <li className="list-group-item">AST: {oneRow.AST}</li>
+                                <li className="list-group-item">STL: {oneRow.STL}</li>
+                            </ul>
+                            {/* <div className="card-body">
+                                <a href="#" className="card-link">Card link</a>
+                                <a href="#" className="card-link">Another link</a>
+                            </div> */}
+                        </div>
+                    
+                )
+            })
+        }
+    }
 }
-
-export default PlayerIndex;
+function mapStateToProps(state){
+    console.log("state player");
+    console.log(state.player);
+    return {
+        player: state.player
+    }
+}
+export default connect(mapStateToProps)(PlayerIndex);
 // const PlayerIndex = ({playerName, fetchPlayer}) => {
 //         console.log("this");
 //         console.log(this);

@@ -12,7 +12,7 @@ class PlayerForm extends Component {
             <div>
                 {/* handleSubmit is a function inside reduxForm, this function would be called 
                 everytime we submit the form*/}
-                <form onSubmit = {this.props.handleSubmit(value => console.log(value))}>
+                <form onSubmit = {this.props.handleSubmit(value => {})}>
                 {/* name is the name we refer to the value of this input */}
                 {/* Field component would automatically save the input to redux store under the 
                 key name 'playerName' we defined */}
@@ -32,9 +32,9 @@ export default reduxForm(
  {
      form: 'playerSearch',
      onSubmitSuccess: (value,dispath, props) => {
-         console.log("in on submit success")
-         console.log(props.values.playerName);
-         actions.fetchPlayer(props.values.playerName);
+        //  console.log("in on submit success")
+        //  console.log(props.values.playerName);
+         dispath(actions.fetchPlayer(props.values.playerName));
      }
 }
 )(PlayerForm);
