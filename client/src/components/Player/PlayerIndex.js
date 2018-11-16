@@ -31,7 +31,7 @@ class PlayerIndex extends Component {
                         <div key = {oneRow.PLAYER_ID + oneRow.year} className="card" >
                             {/* <img className="card-img-top" src="https://kodi.tv/sites/default/files/styles/medium_crop/public/addon_assets/plugin.video.nba/icon/icon.png?itok=UANlCIrN" alt="Card image cap"></img> */}
                             <div className="card-body">
-                                <h5 className="card-title">{oneRow.PLAYER}</h5>
+                                <button className="card-title" >{oneRow.PLAYER}</button>
                                 {/* <p className="card-text"></p> */}
                             </div>
                             <ul className="list-group list-group-flush">
