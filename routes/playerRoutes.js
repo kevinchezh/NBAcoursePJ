@@ -17,6 +17,18 @@ connection.connect(function(err) {
 });
 
 module.exports = app => {
+    app.get('/server/player/draw', (req,res)=>{
+        console.log('in draw data fetch page');
+        console.log(req.query.property);
+        var query = "select year, "+ req.query.property  + " from RegSeasonPlayer where PLAYER = '" + req.query.playerName + "' ORDER BY year";
+        connection.query(query,(error,result,field)=>{
+            if(error) console.log(error);
+            else{
+                console.log(result);
+                res.send(result);
+            }
+        })   
+    })
     app.get('/server/player/detail/:playerName', (req,res) => {
         console.log('in player detail routes');
         console.log(req.params.playerName);
