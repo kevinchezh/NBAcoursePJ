@@ -5,33 +5,46 @@ import React, {Component}  from 'react';
 import * as actions from '../../actions';
 import {connect} from 'react-redux';
 import PlayerForm from './PlayerForm';
+import PlayerDetail from './PlayerDetail';
 import axios from 'axios';
 class PlayerIndex extends Component {
+    state = {showDetail: false};
     render(){
+        if(this.state.showDetail){
+            return (
+                <PlayerDetail />                
+            )
+        }
         return (
+
             <div>
+            
                 <PlayerForm />
                 
                 
-                    {this.renderSearchResult()}
+                {this.renderSearchResult()}
                 
                 
                 
             </div>
         )
     }
+    onClickHandler(PLAYER){
+        this.setState({showDetail:true});
+        this.props.fetchPlayerDetail(PLAYER);
+    }
     renderSearchResult(){
-        console.log("renderSearchResult")
-        console.log(this.props.player);
+        // console.log("renderSearchResult")
+        // console.log(this.props.player);
         if(this.props.player.length>0){
-            console.log("inside map");
+            // console.log("inside map");
             return this.props.player.map(oneRow => {
                 return (
                     
                         <div key = {oneRow.PLAYER_ID + oneRow.year} className="card" >
                             {/* <img className="card-img-top" src="https://kodi.tv/sites/default/files/styles/medium_crop/public/addon_assets/plugin.video.nba/icon/icon.png?itok=UANlCIrN" alt="Card image cap"></img> */}
                             <div className="card-body">
-                                <button className="card-title" >{oneRow.PLAYER}</button>
+                                <button className="card-title" onClick = {()=>this.onClickHandler(oneRow.PLAYER)}>{oneRow.PLAYER}</button>
                                 {/* <p className="card-text"></p> */}
                             </div>
                             <ul className="list-group list-group-flush">
@@ -53,13 +66,13 @@ class PlayerIndex extends Component {
     }
 }
 function mapStateToProps(state){
-    console.log("state player");
-    console.log(state.player);
+    // console.log("state player");
+    // console.log(state.player);
     return {
         player: state.player
     }
 }
-export default connect(mapStateToProps)(PlayerIndex);
+export default connect(mapStateToProps,actions)(PlayerIndex);
 // const PlayerIndex = ({playerName, fetchPlayer}) => {
 //         console.log("this");
 //         console.log(this);

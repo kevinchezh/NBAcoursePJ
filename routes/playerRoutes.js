@@ -17,11 +17,22 @@ connection.connect(function(err) {
 });
 
 module.exports = app => {
-    
+    app.get('/server/player/detail/:playerName', (req,res) => {
+        console.log('in player detail routes');
+        console.log(req.params.playerName);
+        var query = "SELECT PLAYER, SUM(GP*PTS)/SUM(GP) as average FROM RegSeasonPlayer WHERE PLAYER = '" + req.params.playerName + "'"; ;
+        connection.query(query,(error,result,field)=>{
+            if(error) console.log(error);
+            else{
+                console.log(result);
+                res.send(result);
+            }
+        })    
+    })
     app.get('/server/player/:playerName/:year', (req,res)=> {
-        console.log("in playerRoutes");
-        console.log(req.params);
-        console.log(req.query);
+        // console.log("in playerRoutes");
+        // console.log(req.params);
+        // console.log(req.query);
         // var syn = "show tables";
         var syn = "select * from RegSeasonPlayer where PLAYER = '" + req.query.playerName +"'" ; 
         if(parseInt(req.query.year) > 0 ){

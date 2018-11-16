@@ -1,4 +1,4 @@
-import {FETCH_PLAYER} from './types';
+import {FETCH_PLAYER, FETCH_PLAYER_DETAIL} from './types';
 import axios from 'axios';
 
 export const fetchPlayer = (value) => async dispatch => {
@@ -24,4 +24,18 @@ export const fetchPlayer = (value) => async dispatch => {
         type: FETCH_PLAYER,
         payload: res.data
     })
+}
+
+export const fetchPlayerDetail = (playerName) => async dispatch => {
+    console.log("detail action");
+    console.log(playerName);
+
+    const res = await axios.get('/server/player/detail/' + playerName);
+
+    dispatch(
+        {
+            type:FETCH_PLAYER_DETAIL,
+            payload: res.data
+        }
+    )
 }
