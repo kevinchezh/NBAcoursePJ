@@ -4,14 +4,14 @@ import {Chart} from 'react-google-charts';
 import * as actions from '../../actions';
 import _ from 'lodash';
 class PlayerDetail extends Component {
-    // setDrawProperty(buttonVal){
-    //     const value = {
-    //         property:buttonVal,
-    //         playerName: this.props.playerDetail[0].PLAYER
-    //     }
-    //     this.props.drawCharts(value)
+    setDrawProperty(buttonVal){
+        const value = {
+            property:buttonVal,
+            playerName: this.props.playerDetail[0].PLAYER
+        }
+        return value;
 
-    // }
+    }
     drawChart(){
         console.log("draw chart");
         console.log(this.props.playerChartData)
@@ -60,7 +60,13 @@ class PlayerDetail extends Component {
                 {this.props.playerDetail[0].PLAYER}
                 </div>
                 <div>
-                    <button className = 'btn btn-primary' value = 'PTS' onClick = {()=>this.props.drawCharts(value)}>Points on average is :</button>
+                    <button className = 'btn btn-primary' value = 'PTS' onClick = {() =>{
+                            this.props.drawCharts(value)
+                    }
+                        
+                        // const temp = this.setDrawProperty(val);
+                        // this.props.drawCharts(temp)}
+                    }>Points on average is :</button>
                     {this.props.playerDetail[0].average}    
                 </div>
             </div>
