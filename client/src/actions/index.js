@@ -1,4 +1,4 @@
-import {FETCH_PLAYER, FETCH_PLAYER_DETAIL} from './types';
+import {FETCH_PLAYER, FETCH_PLAYER_DETAIL,FETCH_CHART_DATA} from './types';
 import axios from 'axios';
 
 export const fetchPlayer = (value) => async dispatch => {
@@ -39,3 +39,25 @@ export const fetchPlayerDetail = (playerName) => async dispatch => {
         }
     )
 }
+export const drawCharts = (property) => async dispatch => {
+    console.log('draw chart action');
+    console.log(property);
+
+    const res = await axios.get('/server/player/draw', {
+        params:{
+            property: property.property,
+            playerName: property.playerName
+        }
+    });
+    dispatch({
+        type:FETCH_CHART_DATA,
+        payload: res.data
+    })
+}
+
+// export const identifyProperty = (value) => async dispatch => {
+//         const val = {
+//             property:value,
+//             p
+//         }
+// }

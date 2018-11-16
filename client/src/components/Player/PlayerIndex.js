@@ -6,7 +6,6 @@ import * as actions from '../../actions';
 import {connect} from 'react-redux';
 import PlayerForm from './PlayerForm';
 import PlayerDetail from './PlayerDetail';
-import axios from 'axios';
 class PlayerIndex extends Component {
     state = {showDetail: false};
     render(){
@@ -20,7 +19,6 @@ class PlayerIndex extends Component {
             <div>
             
                 <PlayerForm />
-                
                 
                 {this.renderSearchResult()}
                 
