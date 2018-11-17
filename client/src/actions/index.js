@@ -1,4 +1,4 @@
-import {FETCH_PLAYER, FETCH_PLAYER_DETAIL,FETCH_CHART_DATA} from './types';
+import {FETCH_PLAYER, FETCH_PLAYER_DETAIL,FETCH_CHART_DATA, FETCH_TRIVIAL, SHOW_TRIVIAL_DETAIL} from './types';
 import axios from 'axios';
 
 export const fetchPlayer = (value) => async dispatch => {
@@ -55,9 +55,17 @@ export const drawCharts = (property) => async dispatch => {
     })
 }
 
-// export const identifyProperty = (value) => async dispatch => {
-//         const val = {
-//             property:value,
-//             p
-//         }
-// }
+export const fetchTrivialDetail = (trivialID) => async dispatch =>{
+    const res = await axios.get('/server/trivial/'+trivialID);
+    dispatch({
+        type:FETCH_TRIVIAL,
+        payload:res.data
+    })
+}
+
+export const showTrivialDetail = (showDetail)=> {
+    return({
+        type:SHOW_TRIVIAL_DETAIL,
+        payload:showDetail
+    })
+}

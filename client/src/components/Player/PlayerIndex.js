@@ -6,29 +6,27 @@ import * as actions from '../../actions';
 import {connect} from 'react-redux';
 import PlayerForm from './PlayerForm';
 import PlayerDetail from './PlayerDetail';
+import TrivialCard from '../Trivial/TrivialCard';
 class PlayerIndex extends Component {
     state = {showDetail: false};
     render(){
         if(this.state.showDetail){
             return (
-                <PlayerDetail />                
-            )
+                <div>
+                    <PlayerDetail />   
+                </div>                       
+            )      
         }
         return (
-
             <div>
-            
                 <PlayerForm />
-                
                 {this.renderSearchResult()}
-                
-                
-                
             </div>
         )
     }
     onClickHandler(PLAYER){
         this.setState({showDetail:true});
+        this.props.showTrivialDetail(false);
         this.props.fetchPlayerDetail(PLAYER);
     }
     renderSearchResult(){
@@ -67,41 +65,8 @@ function mapStateToProps(state){
     // console.log("state player");
     // console.log(state.player);
     return {
-        player: state.player
+        player: state.player,
+        showTrivialDetail:state.showTrivialDetail
     }
 }
 export default connect(mapStateToProps,actions)(PlayerIndex);
-// const PlayerIndex = ({playerName, fetchPlayer}) => {
-//         console.log("this");
-//         console.log(this);
-//         return (
-//             <div>
-//                 {/* ends here need the form tag to complete the submit */}
-//                 <form>
-//                     <div className = 'container'>
-//                         <input type = "text" className = 'form-control' name = "playerName" placeholder = "Please enter player name" />
-//                     </div>
-//                     {/* call action creator fetchPlayer */}
-//                     {/* fetchPlayer(playerName) */}
-//                     <div>
-//                         <button className = 'btn btn-primary' 
-//                         onClick = {() => {console.log(this.props)}}>Submit</button>
-//                     </div>
-//                 </form>
-                
-//             </div>
-            
-            
-//         )
-    
-// }
-
-// function mapStateToProps(state){
-//     console.log("state: below");
-//     console.log(state);
-//     return {
-//         // playerStats: state.
-//         playerName : state.player.playerName
-//     }
-// }
-// export default connect(mapStateToProps,actions)(PlayerIndex)

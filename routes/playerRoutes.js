@@ -17,6 +17,19 @@ connection.connect(function(err) {
 });
 
 module.exports = app => {
+    //here I handler trivial routes as well since there is not much routes for this one
+    app.get('/server/trivial/:id',(req,res)=>{
+        console.log("in trivial fetch page");
+        console.log(req.params);
+        var query = "select rp.player,(pp.AST/rp.AST) as AST_RATIO, rp.year,pp.AST, rp.AST FROM RegSeasonPlayer rp join PostSeasonPlayer pp on rp.PLAYER_ID = pp.PLAYER_ID and pp.year = rp.year WHERE rp.AST > 8 ORDER BY AST_RATIO DESC LIMIT 10"
+        connection.query(query,(error,result,field)=>{
+            if(error) console.log(error);
+            else{
+                console.log(result);
+                res.send(result);
+            }
+        })
+    })
     app.get('/server/player/draw', (req,res)=>{
         console.log('in draw data fetch page');
         console.log(req.query.property);
@@ -31,8 +44,12 @@ module.exports = app => {
     })
     app.get('/server/player/detail/:playerName', (req,res) => {
         console.log('in player detail routes');
-        console.log(req.params.playerName);
-        var query = "SELECT PLAYER, SUM(GP*PTS)/SUM(GP) as average FROM RegSeasonPlayer WHERE PLAYER = '" + req.params.playerName + "'"; ;
+        console.log(req.params);
+        var query = sql = "SELECT PLAYER, SUM(GP*PTS)/SUM(GP) as PTS, \
+        SUM(GP*AST)/SUM(GP) as AST,SUM(GP*REB)/SUM(GP) as REB, \
+        SUM(GP*STL)/SUM(GP) as STL, SUM(GP*BLK)/SUM(GP) as BLK, \
+        SUM(GP*FG_PCT)/SUM(GP) as FG_PCT,SUM(GP*FG3_PCT)/SUM(GP) as FG3_PCT \
+        FROM RegSeasonPlayer WHERE PLAYER = '"+req.params.playerName + "' GROUP BY PLAYER" ;
         connection.query(query,(error,result,field)=>{
             if(error) console.log(error);
             else{
