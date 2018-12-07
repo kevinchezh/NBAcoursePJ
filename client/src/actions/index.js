@@ -1,4 +1,5 @@
-import {FETCH_PLAYER, FETCH_PLAYER_DETAIL,FETCH_CHART_DATA} from './types';
+import {FETCH_PLAYER, FETCH_PLAYER_DETAIL,FETCH_CHART_DATA, FETCH_USER} from './types';
+//make ajax request to the backend API
 import axios from 'axios';
 
 export const fetchPlayer = (value) => async dispatch => {
@@ -53,6 +54,11 @@ export const drawCharts = (property) => async dispatch => {
         type:FETCH_CHART_DATA,
         payload: res.data
     })
+}
+
+export const fetchUser = () => async dispatch => {
+    const res = await axios.get('/api/current_user');
+    dispatch({ type: FETCH_USER, payload: res.data});
 }
 
 // export const identifyProperty = (value) => async dispatch => {
