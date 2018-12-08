@@ -27,7 +27,7 @@ passport.use(new GoogleStrategy({
         if (existingUser) {
             done(null, existingUser);
         } else {
-            const user = await new User({googleId: profile.id}).save();
+            const user = await new User({googleId: profile.id, favoritePlayer: "none", favoriteTeam:"none"}).save();
             done(null, user);
         }
   }

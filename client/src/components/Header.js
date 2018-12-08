@@ -23,8 +23,7 @@ class Header extends Component{
                 </div>
                 ];
         }
-    
-    }    
+    }
 	render(){
 		return(
 			<nav className="navbar navbar-expand-lg navbar-light bg-light">

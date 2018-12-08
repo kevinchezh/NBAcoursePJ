@@ -13,14 +13,11 @@ class PlayerDetail extends Component {
 
     }
     drawChart(){
-        console.log("draw chart");
-        console.log(this.props.playerChartData)
         if(this.props.playerChartData.length>0){
             const data = [["year", "stats"]];
             _.map(this.props.playerChartData, stats => {
                 data.push([stats.year,stats.PTS]);
             })
-            console.log(data);
             const options = {
                 title: "Line chart for players' stats",
                 hAxis: {
@@ -47,9 +44,6 @@ class PlayerDetail extends Component {
         return "Loading..."
     }
     renderStats(){
-        console.log("renderStats")
-        console.log(this.props.playerDetail[0].PLAYER)
-        console.log(this.props.playerChartData);
         const value = {
             property:'PTS',
             playerName: this.props.playerDetail[0].PLAYER
@@ -95,8 +89,6 @@ class PlayerDetail extends Component {
     }
 }
 function mapStateToProps(state){
-    console.log("map state in player detail");
-    console.log(state);
     return {
         playerDetail: state.playerDetail,
         playerChartData: state.playerChartData

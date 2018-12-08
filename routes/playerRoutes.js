@@ -83,7 +83,7 @@ module.exports = app => {
             }
         })    
     })
-    app.get('/server/player',(req, res) => {
+    app.get('/server/player', (req, res) => {
         res.send("player page");
     })
 

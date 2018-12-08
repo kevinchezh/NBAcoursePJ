@@ -4,10 +4,10 @@ import Header from './Header';
 import Landing from './Landing';
 import SearchResult from './SearchResult';
 import PlayerIndex from './Player/PlayerIndex';
-import Profile from './Profile';
+import Profile from './Profile/Profile';
 //allow components to call action creaters
 import {connect} from 'react-redux';
-import * as actions from '../actions'
+import * as actions from '../actions';
 class App extends Component {
 	//when this component mounts up, use the action creater to fetch the user
 	componentDidMount(){
@@ -24,7 +24,6 @@ class App extends Component {
 					<Route exact path="/SearchResult" component={SearchResult} />
 					<Route exact path="/profile" component={Profile} />
 				</Switch>
-				
 			</div>
 			</BrowserRouter>
 		);

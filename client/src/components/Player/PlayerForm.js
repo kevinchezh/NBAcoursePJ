@@ -30,7 +30,7 @@ class PlayerForm extends Component {
             <div>
                 {/* handleSubmit is a function inside reduxForm, this function would be called 
                 everytime we submit the form*/}
-                <form onSubmit = {this.props.handleSubmit(value => {console.log(value)})}>
+                <form onSubmit = {this.props.handleSubmit(value => {console.log(1)})}>
                 {/* name is the name we refer to the value of this input */}
                 {/* Field component would automatically save the input to redux store under the 
                 key name 'playerName' we defined */}
