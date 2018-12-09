@@ -22,6 +22,7 @@ class PlayerIndex extends Component {
             )      
         }
         return (
+
             <div >
                 <div className='playerFormTitle'>Player Search</div>
                 <div className='PlayerIndex row'>
@@ -39,6 +40,7 @@ class PlayerIndex extends Component {
                     </div>
                     
                 </div>
+
                 {this.renderSearchResult()}
                 
                 

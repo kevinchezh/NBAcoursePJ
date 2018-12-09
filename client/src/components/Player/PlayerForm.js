@@ -76,10 +76,10 @@ class PlayerForm extends Component {
                     <option value = 'post'>Post Season</option>
                 </Field>
                 {this.renderAdvanceFilter()}
+
                 <button className='btn btn-primary formButton' type='submit'>Submit</button>
                 <button className = 'btn btn-outline-secondary formButton' onClick={()=>this.props.reset()}>Clear</button>
-                
-                
+
                 </form>
             </div>
         )

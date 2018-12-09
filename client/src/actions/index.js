@@ -1,5 +1,5 @@
 
-import {FETCH_PLAYER, FETCH_PLAYER_DETAIL,FETCH_CHART_DATA, FETCH_USER, FETCH_TRIVIAL, SHOW_TRIVIAL_DETAIL, FETCH_PLAYER_COMPARE} from './types';
+import {FETCH_PLAYER, FETCH_PLAYER_DETAIL,FETCH_CHART_DATA, FETCH_USER, FETCH_TRIVIAL, SHOW_TRIVIAL_DETAIL, FETCH_PLAYER_COMPARE, FETCH_TEAM, FETCH_TEAM_LIST, FETCH_TEAM_DETAIL, FETCH_TEAM_PLAYER} from './types';
 //make ajax request to the backend API
 import axios from 'axios';
 
@@ -73,6 +73,69 @@ export const drawCharts = (property) => async dispatch => {
 }
 
 
+export const fetchTeamList = (value) => async dispatch => {
+    console.log("action team creator in");
+    console.log(value);
+    const res = await axios.get('/server/team/renderList')
+    dispatch({
+        type: FETCH_TEAM_LIST,
+        payload: res.data
+    })
+}
+
+export const fetchTeam = (value) => async dispatch => {
+    console.log("fetch team success");
+    console.log(value);
+    const res = await axios.get('/server/team/general', {
+        params: {
+            teamName:value.teamName,
+            year: value.year,
+            type: value.type
+        }
+    });
+    dispatch({
+        type: FETCH_TEAM,
+        payload: res.data
+    })
+}
+
+export const fetchTeamDetail = (teamName) => async dispatch => {
+    console.log("fetch detail successful");
+    console.log(teamName);
+    const res = await axios.get('/server/team/detail/:' + teamName, {
+        params:{
+            teamName
+        }
+    });
+    dispatch({
+        type: FETCH_TEAM_DETAIL,
+        payload: res.data
+    })
+}
+
+export const fetchTeamPlayer = (teamName, year) => async dispatch => {
+    console.log("fetch detail successful");
+    console.log(year);
+    const res = await axios.get('/server/team/detail/:' + teamName + '/player', {
+        params:{
+            teamName,
+            year
+        }
+    });
+    dispatch({
+        type: FETCH_TEAM_PLAYER,
+        payload: res.data
+    })
+}
+
+// export const identifyProperty = (value) => async dispatch => {
+//         const val = {
+//             property:value,
+//             p
+//         }
+// }
+
+
 export const fetchTrivialDetail = (trivialID) => async dispatch =>{
     const res = await axios.get('/server/trivial/'+trivialID);
     dispatch({
@@ -98,5 +161,4 @@ export const editProfile = async (values) => {
         await axios.post('/api/editProfile', values);
     }
 }
-
 
