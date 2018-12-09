@@ -6,6 +6,7 @@ var connection = mysql.createConnection({
   password : dev.mySQL_PASSPORT,
   database: "cis550"
 });
+const requireLogin = require('../middlewares/requireLogin');
  
 connection.connect(function(err) {
   if (err) {
@@ -169,8 +170,12 @@ module.exports = app => {
             }
         })    
     })
-    app.get('/server/player',(req, res) => {
+    app.get('/server/player', (req, res) => {
         res.send("player page");
     })
+
+    // app.get('/apx', requireLogin, (req, res) => {
+    //     res.send("you are logged innnnnnnnnn");
+    // })
     
 }

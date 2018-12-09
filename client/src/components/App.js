@@ -6,7 +6,16 @@ import SearchResult from './SearchResult';
 import PlayerIndex from './Player/PlayerIndex';
 import TrivialDetail from './Trivial/TrivialDetail';
 import TrivialCard from './Trivial/TrivialCard';
+import Profile from './Profile/Profile';
+//allow components to call action creaters
+import {connect} from 'react-redux';
+import * as actions from '../actions';
+
 class App extends Component {
+	//when this component mounts up, use the action creater to fetch the user
+	componentDidMount(){
+		this.props.fetchUser();
+	}
 	render() {
 		return (
 			<BrowserRouter>
@@ -18,12 +27,12 @@ class App extends Component {
 					<Route path = "/player/index" component={PlayerIndex} />
 					<Route exact path="/" component={Landing} />
 					<Route exact path="/SearchResult" component={SearchResult} />
+					<Route exact path="/profile" component={Profile} />
 				</Switch>
-				{/* <Route path = "/" component = {TrivialCard} /> */}
 			</div>
 			</BrowserRouter>
 		);
 	}
 }
 
-export default App;
+export default connect(null, actions)(App);

@@ -26,14 +26,12 @@ class PlayerDetail extends Component {
         
     }
     drawChart(){
-        // console.log("draw chart");
-        // console.log(this.props.playerChartData)
+
         if(this.props.playerChartData.length>0){
             const data = [["year", "stats"]];
             _.map(this.props.playerChartData, stats => {
                 data.push([stats.year,stats.PTS||stats.REB||stats.AST||stats.STL||stats.BLK||stats.FG_PCT||stats.FG3_PCT]);
             })
-            // console.log(data);
             const options = {
                 hAxis: {
                     title:'year',
@@ -61,10 +59,10 @@ class PlayerDetail extends Component {
         return ""
     }
     renderStats(){
-        // console.log("renderStats")
-        // console.log(this.props.playerDetail[0])
-        // console.log(this.props.playerChartData);
+
+      //could be value instead of val in master
         const val = {
+
             property:'PTS',
             playerName: this.props.playerDetail[0].PLAYER
         }
@@ -247,8 +245,6 @@ class PlayerDetail extends Component {
     }
 }
 function mapStateToProps(state){
-    // console.log("map state in player detail");
-    // console.log(state);
     return {
         player:state.player,
         playerDetail: state.playerDetail,

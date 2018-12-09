@@ -1,5 +1,29 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 class Header extends Component{
+    renderContent() {
+        switch (this.props.auth) {
+            case null:
+                return;
+            case false:
+                return(
+                    <button className="btn btn-dark my-2 my-sm-0">
+                        <a href="/auth/google">Login With Google</a>
+                    </button>
+                );
+            default:
+                return[
+                <div>
+                    <button className="btn btn-dark my-2 my-sm-0">
+                        <a href="/profile">My Profile</a>
+                    </button>
+                    <button className="btn btn-dark my-2 my-sm-0">
+                        <a href="/api/logout">Logout</a>
+                    </button>
+                </div>
+                ];
+        }
+    }
 	render(){
 		return(
 			<nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -25,11 +49,18 @@ class Header extends Component{
                             </form>
                         </li>
     				</ul>
-                    <button className="btn btn-primary my-2 my-sm-0">login</button>
+                    {this.renderContent()}
   				</div>
 			</nav>
 		);
 	}
 }
 
-export default Header;
+function mapStateToProps({auth}){
+    //get auth state out of all the states
+    return {auth};
+}
+
+export default connect(mapStateToProps)(Header);
+
+

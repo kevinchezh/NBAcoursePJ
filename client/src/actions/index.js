@@ -1,10 +1,10 @@
-import {FETCH_PLAYER, FETCH_PLAYER_DETAIL,FETCH_CHART_DATA, FETCH_TRIVIAL, SHOW_TRIVIAL_DETAIL, FETCH_PLAYER_COMPARE} from './types';
+
+import {FETCH_PLAYER, FETCH_PLAYER_DETAIL,FETCH_CHART_DATA, FETCH_USER, FETCH_TRIVIAL, SHOW_TRIVIAL_DETAIL, FETCH_PLAYER_COMPARE} from './types';
+//make ajax request to the backend API
 import axios from 'axios';
 
 
 export const fetchPlayer = (value) => async dispatch => {
-    // console.log("action creator in");
-    // console.log(value);
     const res = await axios.get('/server/player/' + value.playerName +'/' + value.season
     , {
         params:
@@ -72,6 +72,7 @@ export const drawCharts = (property) => async dispatch => {
     })
 }
 
+
 export const fetchTrivialDetail = (trivialID) => async dispatch =>{
     const res = await axios.get('/server/trivial/'+trivialID);
     dispatch({
@@ -86,3 +87,16 @@ export const showTrivialDetail = (showDetail)=> {
         payload:showDetail
     })
 }
+
+export const fetchUser = () => async dispatch => {
+    const res = await axios.get('/api/current_user');
+    dispatch({ type: FETCH_USER, payload: res.data});
+}
+
+export const editProfile = async (values) => {
+    if(values.favoritePlayer && values.favoriteTeam){
+        await axios.post('/api/editProfile', values);
+    }
+}
+
+
