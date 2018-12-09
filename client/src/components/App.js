@@ -12,14 +12,14 @@ class App extends Component {
 			<BrowserRouter>
 			<div className="container">
 				<Header />
-				<Route path = "/" component = {TrivialCard} />
+				
 				<Switch>
 					<Route path = "/trivial/detail" component = {TrivialDetail} />
 					<Route path = "/player/index" component={PlayerIndex} />
 					<Route exact path="/" component={Landing} />
 					<Route exact path="/SearchResult" component={SearchResult} />
 				</Switch>
-				
+				{/* <Route path = "/" component = {TrivialCard} /> */}
 			</div>
 			</BrowserRouter>
 		);

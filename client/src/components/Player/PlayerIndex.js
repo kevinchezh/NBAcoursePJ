@@ -8,23 +8,42 @@ import PlayerForm from './PlayerForm';
 import PlayerDetail from './PlayerDetail';
 import PlayerCompare from './PlayerCompare';
 import {Chart} from 'react-google-charts';
+import '../../Styles/player.css';
+import TrivialCard from '../Trivial/TrivialCard';
 class PlayerIndex extends Component {
     state = {showDetail: false};
     render(){
         if(this.state.showDetail){
             return (
-                <div>
+                <div className='showDetail'>
                     {/* <Route path = "/player/detail" component={PlayerDetail} /> */}
                     <PlayerDetail />   
                 </div>                       
             )      
         }
         return (
-            <div>
-                <PlayerForm />
+            <div >
+                <div className='playerFormTitle'>Player Search</div>
+                <div className='PlayerIndex row'>
+                    
+                    <div className='playerForm col-4'>
+                        <PlayerForm />
+                        
+                    </div>
+                    <div className='playerCompare col-4'>
+                    <PlayerCompare />
+                    {this.renderPlayerCompare()}
+                    </div>
+                    <div className = 'col-3'>
+                        <TrivialCard  />
+                    </div>
+                    
+                </div>
                 {this.renderSearchResult()}
-                <PlayerCompare />
-                {this.renderPlayerCompare()}
+                
+                
+                
+                
             </div>
         )
     }
@@ -41,13 +60,13 @@ class PlayerIndex extends Component {
             console.log(two);
             var data = [
                 ['Player',one.PLAYER,{ role: 'annotation' }, two.PLAYER,{ role: 'annotation' }],
-                ['PTS', one.PTS, one.PTS, two.PTS, two.PTS],
-                ['AST', one.AST, one.AST, two.AST, two.AST],
-                ['REB', one.REB, one.REB, two.REB, two.REB],
-                ['STL', one.STL, one.STL, two.STL, two.STL],
-                ['BLK', one.BLK, one.BLK, two.BLK, two.BLK],
-                ['FG_PCT', one.FG_PCT, one.FG_PCT, two.FG_PCT, two.FG_PCT],
-                ['FG3_PCT', one.FG3_PCT, one.FG3_PCT, two.FG3_PCT, two.FG3_PCT],
+                ['PTS', parseFloat(one.PTS), one.PTS, parseFloat(two.PTS), two.PTS],
+                ['AST', parseFloat(one.AST), one.AST, parseFloat(two.AST), two.AST],
+                ['REB', parseFloat(one.REB), one.REB, parseFloat(two.REB), two.REB],
+                ['STL', parseFloat(one.STL), one.STL, parseFloat(two.STL), two.STL],
+                ['BLK', parseFloat(one.BLK), one.BLK, parseFloat(two.BLK), two.BLK],
+                ['FG_PCT', parseFloat(one.FG_PCT), one.FG_PCT, parseFloat(two.FG_PCT), two.FG_PCT],
+                ['FG3_PCT', parseFloat(one.FG3_PCT), one.FG3_PCT, parseFloat(two.FG3_PCT), two.FG3_PCT],
             ];
         
               var options = {
@@ -58,7 +77,7 @@ class PlayerIndex extends Component {
                 isStacked: "percent"
               };
               return(
-                <div className = 'container'>
+                <div className = 'container compareGraph'>
                     <Chart 
                     chartType = 'BarChart'
                     data = {data}
@@ -79,19 +98,19 @@ class PlayerIndex extends Component {
             // console.log("inside map");
             return this.props.player.map(oneRow => {
                 return (
-                    
-                        <div key = {oneRow.PLAYER_ID + oneRow.year} className="card" >
+                        
+                        <div key = {oneRow.PLAYER_ID + oneRow.year} className=" searchResult needInline card" >
                             {/* <img className="card-img-top" src="https://kodi.tv/sites/default/files/styles/medium_crop/public/addon_assets/plugin.video.nba/icon/icon.png?itok=UANlCIrN" alt="Card image cap"></img> */}
-                            <div className="card-body">
-                                <button className="card-title" onClick = {()=>this.onClickHandler(oneRow.PLAYER)}>{oneRow.PLAYER}</button>
+                            <div className="card-body searchCard">
+                                <button className="card-title searchCardPlayerName" onClick = {()=>this.onClickHandler(oneRow.PLAYER)}>{oneRow.PLAYER}</button>
                                 {/* <p className="card-text"></p> */}
                             </div>
-                            <ul className="list-group list-group-flush">
-                                <li className="list-group-item">year: {oneRow.year}</li>
-                                <li className="list-group-item">PTS: {oneRow.PTS}</li>
-                                <li className="list-group-item">REB: {oneRow.REB}</li>
-                                <li className="list-group-item">AST: {oneRow.AST}</li>
-                                <li className="list-group-item">STL: {oneRow.STL}</li>
+                            <ul className="list-group list-group-flush searchCardList">
+                                <li className="list-group-item searchCardItem">year: {oneRow.year}</li>
+                                <li className="list-group-item searchCardItem">PTS: {oneRow.PTS}</li>
+                                <li className="list-group-item searchCardItem">REB: {oneRow.REB}</li>
+                                <li className="list-group-item searchCardItem">AST: {oneRow.AST}</li>
+                                <li className="list-group-item searchCardItem">STL: {oneRow.STL}</li>
                             </ul>
                             {/* <div className="card-body">
                                 <a href="#" className="card-link">Card link</a>

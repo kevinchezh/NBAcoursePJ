@@ -1,21 +1,25 @@
 import React, {Component} from 'react';
 import {reduxForm, Field} from 'redux-form';
 import * as actions from '../../actions';
-
+import '../../Styles/player.css';
 
 class PlayerCompare extends Component{
     render(){
         return (
-            <div className='container'>
-                <h3> Input two players and compare their stats!</h3>
+            <div className='container compareForm'>
+                <h2 className = 'playerFormTitle'>Input two players and compare!</h2>
                 <form onSubmit={this.props.handleSubmit(value => {console.log(value)})}>
                 <div>
-                    <Field type = 'text' placeholder = 'input a player name' name = 'playerOne' component='input'/>
-                    <Field tupe = 'text' name = 'playerTwo' placeholder='input a player name' component='input'/>  
-                <button type="submit" >
+                    <Field className = 'FormBar' type = 'text' placeholder = 'input a player name' name = 'playerOne' component='input'/>
+                </div>
+                <div>
+                    <Field className = 'FormBar' type = 'text' name = 'playerTwo' placeholder='input a player name' component='input'/>  
+                </div>
+                <div>
+                <button className = 'btn btn-primary formButton' type="submit" >
                   Compare!
                 </button>
-                <button type="button" onClick={()=>this.props.reset()}>
+                <button className = 'btn btn-secondary formButton' type="button" onClick={()=>this.props.reset()}>
                   Clear
                 </button>
                 </div>

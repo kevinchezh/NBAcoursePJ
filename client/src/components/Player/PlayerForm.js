@@ -7,7 +7,7 @@ import {reduxForm, Field} from 'redux-form';
 import FilterField from './PlayerFilterField';
 //Field is a component that could render any html form tags 
 import _ from 'lodash';
-
+import '../../Styles/player.css';
 const FILTER = [
     {label : 'points minimum', name: 'PTSlo'},
     {label : 'points maximum', name: 'PTShi'},
@@ -22,7 +22,10 @@ class PlayerForm extends Component {
     renderAdvanceFilter(){
         return _.map(FILTER, (filter) => {
             return (
-                <Field key = {filter.name} name = {filter.name} type = 'text' component={FilterField} label = {filter.label}/>
+                
+                    <Field  key = {filter.name} name = {filter.name} type = 'text' component={FilterField} label = {filter.label}/>
+                
+                
             )
         })
     }
@@ -38,11 +41,15 @@ class PlayerForm extends Component {
                 {/* Still need to figure out what is happening behind the scene */}
 
                 {/* component property could take in the actual custom component we defined */}
-                <Field type='text' name='playerName' component='input'/>
                 <div>
-                <Field name="year" component="select" >
+                    <label>
+                        Player Name
+                    </label>
+                </div>
+                <Field className='FormBar' placeholder = 'Player Name' type='text' name='playerName' component='input' label = 'player name'/>
+                <div>
+                <Field className = 'FormBar' name="year" component="select" >
                     <option>Select Year</option>
-                    <option value = '2018'>2018</option>
                     <option value = '2017'>2017</option>
                     <option value = '2016'>2016</option>
                     <option value = '2015'>2015</option>
@@ -62,15 +69,16 @@ class PlayerForm extends Component {
                     <option value = '2001'>2001</option>
                     <option value = '2000'>2000</option>
                 </Field>
-                <Field name="season" component="select" >
+                </div>
+                <Field className = 'FormBar' name="season" component="select" >
                     <option>Select season</option>
                     <option value = 'reg'>Regular Season</option>
                     <option value = 'post'>Post Season</option>
                 </Field>
                 {this.renderAdvanceFilter()}
-        </div>
-                <button className = 'btn btn-outline-secondary' onClick={()=>this.props.reset()}>Clear</button>
-                <button className='btn btn-primary' type='submit'>Submit</button>
+                <button className='btn btn-primary formButton' type='submit'>Submit</button>
+                <button className = 'btn btn-outline-secondary formButton' onClick={()=>this.props.reset()}>Clear</button>
+                
                 
                 </form>
             </div>

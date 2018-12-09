@@ -4,6 +4,8 @@ import {Chart} from 'react-google-charts';
 import * as actions from '../../actions';
 import _ from 'lodash';
 import {Link} from 'react-router-dom';
+import '../../Styles/player.css';
+import TrivialCard from '../Trivial/TrivialCard';
 class PlayerDetail extends Component {
     constructor(props) {
         super(props);
@@ -33,22 +35,25 @@ class PlayerDetail extends Component {
             })
             // console.log(data);
             const options = {
-                title: "Line chart for players' stats",
                 hAxis: {
-                    title:'year'
+                    title:'year',
+                    format:'####'
                 },
                 vAxis: {
-                    title:'number'
-                }          
+                    title:'stats'
+                },
+                curveType:'function'
+                       
             }
             return(
-                <div className = 'container'>
+                <div className = 'container lineGraph'>
                     <Chart 
-                    chartType = 'Line'
+                    chartType = 'LineChart'
                     data = {data}
                     height = '300px'
                     options = {options}
-                    legendToggle
+                    lineWidth = '10'
+                    // legendToggle
                     />
                 </div>
             )
@@ -71,9 +76,9 @@ class PlayerDetail extends Component {
             _.map(propertyFields, feild =>{
                 // const curField = {property:"PTS"};
                 return(
-                    <p style = {buttonStyle} className = 'col-sm-4'>
+                    <p style = {buttonStyle} className = 'col-sm-5'>
                         {/* <div className = 'col-sm-4'> */}
-                        <button style = {buttonStyle} className = 'btn btn-primary' value = {feild} onClick = {() =>{
+                        <button style = {buttonStyle} className = 'btn btn-primary col-sm-4 detailButton' value = {feild} onClick = {() =>{
                                 val.property = feild;
                                 this.props.drawCharts(val)
                         }
@@ -113,78 +118,78 @@ class PlayerDetail extends Component {
             // console.log("inside map");
             return this.props.player.map(oneRow => {
                 return (
-                        <div key = {oneRow.PLAYER_ID + oneRow.year} >
-                            <div className='row'>
+                        <div className='yearStatsBlock' key = {oneRow.PLAYER_ID + oneRow.year} >
+                            <div className='row yearStatsRow'>
                             <div className='col-sm-1'>    
-                                    <div className='form-group'>
+                                    <div className='form-group yearStats'>
                                         <label for="user_title">Year</label>
-                                        <li className="list-group-item"> {oneRow.year}</li>
+                                        <li className="list-group-item yearStats"> {oneRow.year}</li>
                                     </div>
                                 </div>
                                 <div className='col-sm-1'>    
-                                    <div className='form-group'>
+                                    <div className='form-group yearStats'>
                                         <label for="user_title">Season</label>
-                                        <li className="list-group-item"> {this.state.season}</li>
+                                        <li className="list-group-item yearStats"> {this.state.season}</li>
                                     </div>
                                 </div>
                                 <div className='col-sm-1'>    
-                                    <div className='form-group'>
+                                    <div className='form-group yearStats'>
                                         <label for="user_title">Team</label>
-                                        <li className="list-group-item"> {oneRow.TEAM}</li>
+                                        <li className="list-group-item yearStats"> {oneRow.TEAM}</li>
                                     </div>
                                 </div>
                                 <div className='col-sm-1'>    
-                                    <div className='form-group'>
+                                    <div className='form-group yearStats'>
                                         <label for="user_title">MIN</label>
-                                        <li className="list-group-item"> {oneRow.MIN}</li>
+                                        <li className="list-group-item yearStats"> {oneRow.MIN}</li>
                                     </div>
                                 </div>
                                 <div className='col-sm-1'>    
-                                    <div className='form-group'>
+                                    <div className='form-group yearStats'>
                                         <label for="user_title">PTS</label>
-                                        <li className="list-group-item"> {oneRow.PTS}</li>
+                                        <li className="list-group-item yearStats"> {oneRow.PTS}</li>
                                     </div>
                                 </div>
                                 <div className='col-sm-1'>    
-                                    <div className='form-group'>
+                                    <div className='form-group yearStats'>
                                         <label for="user_title">FG-PCT</label>
-                                        <li className="list-group-item"> {oneRow.FG_PCT}</li>
+                                        <li className="list-group-item yearStats"> {oneRow.FG_PCT}</li>
                                     </div>
                                 </div>
                                 <div className='col-sm-1'>    
-                                    <div className='form-group'>
+                                    <div className='form-group yearStats'>
                                         <label for="user_title">FG3_PCT</label>
-                                        <li className="list-group-item"> {oneRow.FG3_PCT}</li>
+                                        <li className="list-group-item yearStats"> {oneRow.FG3_PCT}</li>
                                     </div>
                                 </div>
                                 <div className='col-sm-1'>    
-                                    <div className='form-group'>
+                                    <div className='form-group yearStats'>
                                         <label for="user_title">AST</label>
-                                        <li className="list-group-item"> {oneRow.AST}</li>
+                                        <li className="list-group-item yearStats"> {oneRow.AST}</li>
                                     </div>
                                 </div>
                                 <div className='col-sm-1'>    
-                                    <div className='form-group'>
+                                    <div className='form-group yearStats' >
                                         <label for="user_title">REB</label>
-                                        <li className="list-group-item"> {oneRow.REB}</li>
+                                        <li className="list-group-item yearStats" > {oneRow.REB}</li>
                                     </div>
                                 </div>
                                 <div className='col-sm-1'>    
-                                    <div className='form-group'>
+                                    <div className='form-group yearStats'>
                                         <label for="user_title">STL</label>
-                                        <li className="list-group-item"> {oneRow.STL}</li>
+                                        <li className="list-group-item yearStats"> {oneRow.STL}</li>
                                     </div>
                                 </div>
                                 <div className='col-sm-1'>    
-                                    <div className='form-group'>
+                                    <div className='form-group yearStats'>
                                         <label for="user_title">BLK</label>
-                                        <li className="list-group-item"> {oneRow.BLK}</li>
+                                        <li className="list-group-item yearStats"> {oneRow.BLK}</li>
                                     </div>
                                 </div>
                                 <div className='col-sm-1'>    
-                                    <div className='form-group'>
+                                    <div className='form-group yearStats'>
                                         <label for="user_title">TOV</label>
-                                        <li className="list-group-item"> {oneRow.TOV}</li>
+                                        <li className="list-group-item yearStats"> {oneRow.TOV}</li>
                                     </div>
                                 </div>
                                 
@@ -199,24 +204,35 @@ class PlayerDetail extends Component {
         if(this.props.playerDetail.length>0){
             return(
                 <div>
-                    <Link to='/' className = 'btn btn-outline-secondary'>Back</Link>
-                    <div className = 'container'>
-                 <div className = 'playerStats'>
-                 {this.props.playerDetail[0].PLAYER}
-                 </div>
-                 </div>
-                    <div>
-                        {this.renderStats()}
+                    <div className = 'playerStats'>
+                        <h3 className = 'detailPlayerName'>{this.props.playerDetail[0].PLAYER}</h3>
+                        <Link to='/' className = 'btn btn-outline-secondary'>Back</Link>
                     </div>
-                    <div>
-                        {this.drawChart()}
+                    <div className='row'>
+                        
+                        <div className = 'container col-8'>
+                    
+                       
+                        <div>
+                            {this.renderStats()}
+                        </div>
+                        <div>
+                            {this.drawChart()}
+                        </div>
+                        </div>
+                        <div className='col-4'>
+                            <TrivialCard />
+                        </div>
+                        
                     </div>
-                    <button onClick = {()=>this.setState({season:'reg'})} className = 'btn-outline-primary'>Show regular stats</button>
-                    <button onClick = {()=>this.setState({season:'post'})} className = 'btn-outline-primary'>Show post stats </button>
-                    <div>
-                        {this.renderYearStats()}
-                    </div>
-                
+                    <div className = 'showStatsDiv'>
+                            <button onClick = {()=>this.setState({season:'reg'})} className = 'btn-outline-primary showStatsButton'>Show regular stats</button>
+                            <button onClick = {()=>this.setState({season:'post'})} className = 'btn-outline-primary showStatsButton'>Show post stats </button>
+                        </div>
+                        
+                        <div>
+                            {this.renderYearStats()}
+                        </div>
                 </div>
                 
                 
