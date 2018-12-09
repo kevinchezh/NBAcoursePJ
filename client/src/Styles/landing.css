@@ -1,0 +1,37 @@
+.jumbotron {
+    background-image: url("http://www.biocenit.cat/mypics/65/651510/nba-wallpaper-hd-for-android.jpg");
+    background-size: contain;
+    height:500px;
+    margin-left: 0%;
+    margin-right: 0%;
+    border: 0px;
+}
+.jumboContainer{
+    background-color: tomato;
+    margin-left: 0%;
+    margin-right: 0%;
+    border: 0px;
+}
+.display-4{
+    margin-top: 100px;
+    font-weight: 500;
+    color: whitesmoke;
+    text-align: center;
+}
+
+.lead{
+    color: wheat;
+    text-align: center;
+    font-weight: 300
+}
+
+.jumboButton1{
+    margin-left: 35%;
+    margin-right:20px;
+    text-align: center;
+}
+.jumboButton2{
+    margin-right:35%;
+    margin-left: 20px;
+    text-align: center;
+}

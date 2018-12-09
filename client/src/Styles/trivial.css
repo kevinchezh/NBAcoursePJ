@@ -1,0 +1,40 @@
+.trivial-card{
+    /* margin-left:75%; */
+    display: inline-flex;
+    height:240px;
+    /* margin-left:auto; */
+    margin-right:0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.title{
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 50px;
+    color: cornflowerblue;
+}
+.image{
+    display: block;
+    margin-left: 350px;
+    margin-right: 50px;
+    width: 50%;
+    margin-bottom: 20px;
+}
+.content{
+    font-size: 20px;
+    line-height: 40px;
+}
+.query{
+    font-size: 17px;
+    margin-bottom: 10px;
+    line-height: 30px;
+}
+
+.back{
+    margin-top: 20px;
+}
+.moreInfo{
+    margin-left:40px;
+    margin-right:0
+}
