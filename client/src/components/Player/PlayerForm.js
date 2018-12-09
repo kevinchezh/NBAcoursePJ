@@ -49,7 +49,7 @@ class PlayerForm extends Component {
                 </Field>
 
                 {this.renderAdvanceFilter()}
-        </div>
+                </div>
                 <button className='btn btn-primary' type='submit'>Submit</button>
                 </form>
             </div>

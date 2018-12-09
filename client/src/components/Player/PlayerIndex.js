@@ -15,7 +15,7 @@ class PlayerIndex extends Component {
             )
         }
         return (
-
+            
             <div>
             
                 <PlayerForm />

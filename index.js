@@ -40,6 +40,9 @@ app.use(passport.session());
 require("./routes/authRoutes")(app);
 const playerRoutes = require("./routes/playerRoutes");
 playerRoutes(app);
+const teamRoutes = require("./routes/teamRoutes");
+teamRoutes(app);
+
 
 const PORT = 5000;
 app.listen(PORT);
