@@ -31,9 +31,7 @@ class ProfileForm extends Component {
 					onSubmit={this.props.handleSubmit(values => editProfile(values))}
 				>
 				{this.renderFields()}
-				<button
-				
-				type="submit">Submit</button>
+				<button type="submit">Submit</button>
 				</form>
 			</div>
 		);

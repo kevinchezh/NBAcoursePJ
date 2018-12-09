@@ -60,8 +60,9 @@ export const fetchUser = () => async dispatch => {
 }
 
 export const editProfile = async (values) => {
-    console.log(values);
-    const res = await axios.post('/api/editProfile', values);
+    if(values.favoritePlayer && values.favoriteTeam){
+        await axios.post('/api/editProfile', values);
+    }
 }
 
 // export const identifyProperty = (value) => async dispatch => {

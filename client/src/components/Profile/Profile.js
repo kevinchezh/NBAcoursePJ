@@ -13,7 +13,6 @@ class Profile extends Component {
             default:
                 return(
                 <div>
-                    <h2>{this.props.auth._id}</h2>
                 	<h3>your favorite player is <strong>
                 		<a href="#"> {this.props.auth.favoritePlayer} </a>
                 		</strong>

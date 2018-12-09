@@ -35,6 +35,7 @@ app.use(cookieSession({
 }))
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(passport.initialize());
+app.use(bodyParser.json());
 app.use(passport.session());
 
 require("./routes/authRoutes")(app);

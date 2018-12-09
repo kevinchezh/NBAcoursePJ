@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const passport = require("passport");
-const User =require("../models/User");
+const User =require("../models/User").User;
+const requireLogin = require("../middlewares/requireLogin");
+
 
 module.exports = app =>{
 	app.get('/',
@@ -32,25 +34,27 @@ module.exports = app =>{
 		res.send(req.user);
 	});
 
- // Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedCampground){
- //        if(err){
- //            res.redirect("/campgrounds");
- //        } else {
- //            res.redirect("/campgrounds/" + req.params.id);
- //        }
- //    });
-
-	app.post('/api/editProfile', async (req, res) => {
+	app.post('/api/editProfile', requireLogin, (req, res) => {
 		const { favoritePlayer, favoriteTeam } = req.body;
-		const user = new User({
-			favoritePlayer,
-			favoriteTeam,
-			googleId: req.user.id
-		});
 		try{
-			await User.save();
+			User.findById(req.user.id, function (err, user) {
+				console.log(user);
+  				if (err){
+  					console.log(err);
+  				} else{
+  					user.favoritePlayer = favoritePlayer;
+  					user.favoriteTeam = favoriteTeam;
+  					user.save(function (err, updatedUser) {
+    					if (err){
+    						console.log(err);
+  						} else{
+    						res.send(updatedUser);
+    					}
+  					});
+  				}
+			});
 		} catch (err) {
-			res.status(422).send(err);
-		}
+			res.status(422).send(err);	
+	}
 	});
 }

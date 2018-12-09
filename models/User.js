@@ -7,4 +7,5 @@ const UserSchema = new Schema({
   favoriteTeam: String
 });
 
-mongoose.model('User', UserSchema);
+exports.User = mongoose.model('User', UserSchema);
+
