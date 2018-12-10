@@ -1,7 +1,9 @@
 
+
 import {FETCH_PLAYER, FETCH_PLAYER_DETAIL,FETCH_CHART_DATA, FETCH_USER, FETCH_TRIVIAL, 
     SHOW_TRIVIAL_DETAIL, FETCH_PLAYER_COMPARE, FETCH_TEAM, FETCH_TEAM_LIST, FETCH_TEAM_DETAIL, 
-    FETCH_TEAM_PLAYER,FETCH_COMMON_TEAMMATES} from './types';
+    FETCH_TEAM_PLAYER,FETCH_COMMON_TEAMMATES, FETCH_TEAM_CHART} from './types';
+
 //make ajax request to the backend API
 import axios from 'axios';
 
@@ -78,6 +80,22 @@ export const drawCharts = (property) => async dispatch => {
     });
     dispatch({
         type:FETCH_CHART_DATA,
+        payload: res.data
+    })
+}
+
+export const drawTeamCharts = (property) => async dispatch => {
+    console.log('draw team chart action');
+    console.log(property);
+
+    const res = await axios.get('/server/team/draw', {
+        params:{
+            property: property.property,
+            teamName: property.teamName
+        }
+    });
+    dispatch({
+        type:FETCH_TEAM_CHART,
         payload: res.data
     })
 }
