@@ -4,20 +4,32 @@ import {connect} from 'react-redux';
 import TeamForm from './TeamForm';
 import TeamDetail from './TeamDetail';
 import '../../Styles/team.css';
+import TrivialCard from '../Trivial/TrivialCard'
 class TeamIndex extends Component {
     state={renderChoice:1}
     render() {
         if(this.state.renderChoice === 1) {
             return (
-                <div>
-                    <TeamForm />
-                    {this.renderSearchResult()}
+                <div className = 'row'>
+                    <div className = 'col-9'>
+                        <TeamForm />
+                        {this.renderSearchResult()}
+                    </div>
+                    <div className = 'col-3'>
+                        <TrivialCard  />
+                    </div>
                 </div>
             )
         } else if(this.state.renderChoice === 2){
             return (
-                <div>
-                    <TeamDetail />
+                <div className = 'row'>
+                    <div className = 'col-9'>
+                        <TeamDetail />
+                    </div>
+                    
+                    {/* <div className = 'col-3'>
+                        <TrivialCard  />
+                    </div> */}
                 </div>
             )
         } else {

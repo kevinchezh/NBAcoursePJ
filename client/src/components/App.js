@@ -8,7 +8,6 @@ import PlayerIndex from './Player/PlayerIndex';
 import TeamIndex from './Team/TeamIndex';
 
 import TrivialDetail from './Trivial/TrivialDetail';
-import TrivialCard from './Trivial/TrivialCard';
 import Profile from './Profile/Profile';
 //allow components to call action creaters
 import {connect} from 'react-redux';

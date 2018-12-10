@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import {reduxForm, Field} from 'redux-form';
 import ProfileForm from './ProfileForm';
 import * as actions from '../../actions';
 import PlayerDetail from '../Player/PlayerDetail';

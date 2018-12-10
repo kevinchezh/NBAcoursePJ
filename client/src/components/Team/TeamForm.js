@@ -3,7 +3,6 @@ import * as actions from '../../actions';
 import {reduxForm, Field} from 'redux-form';
 
 import TeamList from './TeamList'
-import _ from 'lodash';
 import '../../Styles/team.css';
 
 class TeamForm extends Component {

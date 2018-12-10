@@ -1,5 +1,4 @@
 import React, {Component}  from 'react';
-import * as actions from '../../actions';
 import {fetchTeamList} from '../../actions/index'
 import {connect} from 'react-redux';
 
