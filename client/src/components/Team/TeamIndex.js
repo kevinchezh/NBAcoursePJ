@@ -13,6 +13,7 @@ class TeamIndex extends Component {
                 <div className = 'row'>
                     <div className = 'col-9'>
                         <TeamForm />
+                        {this.renderButton()}
                         {this.renderSearchResult()}
                     </div>
                     <div className = 'col-3'>
@@ -40,6 +41,17 @@ class TeamIndex extends Component {
             )
         }
     }
+
+    renderButton() {
+        return (
+            <button id="boston" class="boston" onClick={() => {
+                this.setState({renderChoice:2});
+                this.props.fetchTeamDetail("Boston Celtics");
+            }}>
+            <img className = 'teamIcon' src="http://content.sportslogos.net/logos/6/213/full/slhg02hbef3j1ov4lsnwyol5o.png" /></button>
+        )
+    }
+
     renderSearchResult() {
         if(this.props.team.length > 0) {
             // console.log(this.props.team);
