@@ -33,8 +33,8 @@ export const fetchPlayer = (value) => async dispatch => {
 }
 
 export const fetchPlayerDetail = (playerName) => async dispatch => {
-    console.log("detail action");
-    console.log(playerName);
+    // console.log("detail action");
+    // console.log(playerName);
 
     const res = await axios.get('/server/player/detail/' + playerName);
 
@@ -85,8 +85,8 @@ export const drawCharts = (property) => async dispatch => {
 }
 
 export const drawTeamCharts = (property) => async dispatch => {
-    console.log('draw team chart action');
-    console.log(property);
+    // console.log('draw team chart action');
+    // console.log(property);
 
     const res = await axios.get('/server/team/draw', {
         params:{
@@ -102,8 +102,8 @@ export const drawTeamCharts = (property) => async dispatch => {
 
 
 export const fetchTeamList = (value) => async dispatch => {
-    console.log("action team creator in");
-    console.log(value);
+    // console.log("action team creator in");
+    // console.log(value);
     const res = await axios.get('/server/team/renderList')
     dispatch({
         type: FETCH_TEAM_LIST,
@@ -112,8 +112,8 @@ export const fetchTeamList = (value) => async dispatch => {
 }
 
 export const fetchTeam = (value) => async dispatch => {
-    console.log("fetch team success");
-    console.log(value);
+    // console.log("fetch team success");
+    // console.log(value);
     const res = await axios.get('/server/team/general', {
         params: {
             teamName:value.teamName,
@@ -128,8 +128,8 @@ export const fetchTeam = (value) => async dispatch => {
 }
 
 export const fetchTeamDetail = (teamName) => async dispatch => {
-    console.log("fetch detail successful");
-    console.log(teamName);
+    // console.log("fetch detail successful");
+    // console.log(teamName);
     const res = await axios.get('/server/team/detail/:' + teamName, {
         params:{
             teamName
@@ -142,8 +142,8 @@ export const fetchTeamDetail = (teamName) => async dispatch => {
 }
 
 export const fetchTeamPlayer = (teamName, year) => async dispatch => {
-    console.log("fetch detail successful");
-    console.log(year);
+    // console.log("fetch detail successful");
+    // console.log(year);
     const res = await axios.get('/server/team/detail/:' + teamName + '/player', {
         params:{
             teamName,

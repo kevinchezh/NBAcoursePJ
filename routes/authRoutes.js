@@ -38,7 +38,7 @@ module.exports = app =>{
 		const { favoritePlayer, favoriteTeam } = req.body;
 		try{
 			User.findById(req.user.id, function (err, user) {
-				console.log(user);
+				// console.log(user);
   				if (err){
   					console.log(err);
   				} else{

@@ -47,8 +47,8 @@ export default reduxForm(
     {
         form: 'playerSearch',
         onSubmitSuccess: (value,dispath, props) => {
-            console.log("in on submit success")
-            console.log(props.values);
+            // console.log("in on submit success")
+            // console.log(props.values);
             dispath(actions.fetchTeam(props.values));
         }
    }

@@ -46,7 +46,7 @@ class TeamDetail extends Component {
 
     renderTeamDetail() {
         if(this.props.teamDetail.length > 0) {
-            console.log(this.props.teamDetail);
+            // console.log(this.props.teamDetail);
             const val = {
 
                 property:'W',
@@ -143,7 +143,7 @@ class TeamDetail extends Component {
                     <div key={element.PLAYER} className="card-body needInline card">
                         <button className="card-title" 
                                 onClick = {()=>{
-                                    console.log(element.PLAYER);
+                                    // console.log(element.PLAYER);
                                     this.setState({showDetail: true});
                                     this.props.fetchPlayerDetail(element.PLAYER);
 
@@ -166,8 +166,8 @@ class TeamDetail extends Component {
 
 }
 function mapStateToProps(state){
-    console.log("map state in team detail");
-    console.log(state);
+    // console.log("map state in team detail");
+    // console.log(state);
     return {
         teamDetail: state.teamDetail,
         teamPlayer: state.teamPlayer,

@@ -34,8 +34,8 @@ export default reduxForm(
         form: 'playercompare',
         onSubmitSuccess: (value,dispatch, props) => {
            //  console.log("in on submit success")
-            console.log("this is onSubmit Success");
-            console.log(props.values);
+            // console.log("this is onSubmit Success");
+            // console.log(props.values);
         dispatch(actions.fetchPlayerCompare(props.values.playerOne, props.values.playerTwo));
             
     }

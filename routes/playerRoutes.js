@@ -20,8 +20,8 @@ module.exports = app => {
     app.get('/server/player/commonTeammates/:playerOne/:playerTwo', (req,res)=>{
         var P1 = req.params.playerOne;
         var P2 = req.params.playerTwo;
-        console.log(P1);
-        console.log(P2);
+        // console.log(P1);
+        // console.log(P2);
         var query = "SELECT T1.Player \
         FROM (select DISTINCT P1.PLAYER \
         FROM RegSeasonPlayer P1 join RegSeasonPlayer P2 ON P1.year = P2.year and P1.TEAM =P2.TEAM \
@@ -32,17 +32,17 @@ module.exports = app => {
         connection.query(query,(error,result,field)=>{
             if(error) console.log(error);
             else{
-                console.log(result);
+                // console.log(result);
                 res.send(result);
             }
         })
     })
     //here I handler trivial routes as well since there is not much routes for this one
     app.get('/server/trivial/:id',(req,res)=>{
-        console.log("in trivial fetch page");
-        console.log(req.params);
+        // console.log("in trivial fetch page");
+        // console.log(req.params);
         const getQuery = ()=>{
-            console.log(req.params.id);
+            // console.log(req.params.id);
         };
         const query = (
             function(){switch(req.params.id){
@@ -93,11 +93,11 @@ module.exports = app => {
                 ORDER BY ratio DESC LIMIT 20';
             }}
         )();
-        console.log(query);
+        // console.log(query);
         connection.query(query,(error,result,field)=>{
             if(error) console.log(error);
             else{
-                console.log(result);
+                // console.log(result);
                 if(req.params.id==5) {
                     res.send([{
                              year: 2011,
@@ -116,7 +116,7 @@ module.exports = app => {
         connection.query(query,(error,result,field)=>{
             if(error) console.log(error);
             else{
-                console.log(result);
+                // console.log(result);
                 res.send(result);
             }
         })   
@@ -132,13 +132,13 @@ module.exports = app => {
         connection.query(query,(error,result,field)=>{
             if(error) console.log(error);
             else{
-                console.log(result);
+                // console.log(result);
                 res.send(result);
             }
         })    
     })
     app.get('/server/player/:playerName/:season', (req,res)=> {
-        console.log("in playerRoutes");
+        // console.log("in playerRoutes");
         // console.log(req.params);
         // console.log(req.query);
         // var syn = "show tables";
@@ -146,7 +146,7 @@ module.exports = app => {
         if(req.query.season == 'post'){
             season = 'PostSeasonPlayer';
         }
-        console.log(req.query.playerName);
+        // console.log(req.query.playerName);
         var syn = "select * from " + season  + " where year=year  " ; 
         if(req.query.playerName!=undefined) {
             syn+= " and PLAYER = '" + req.query.playerName +"' "
@@ -179,12 +179,12 @@ module.exports = app => {
             syn += " and STL <= " + parseInt(req.query.STLhi);
         }
         syn += " ORDER BY year DESC";
-        console.log(syn);
+        // console.log(syn);
         // var syn = 'select rp.player,(pp.PTS/rp.PTS) as PTS_RATIO, rp.year,pp.PTS,rp.PTS FROM RegSeasonPlayer rp join PostSeasonPlayer pp on rp.PLAYER_ID = pp.PLAYER_ID and pp.year = rp.year WHERE rp.PTS > 20 ORDER BY PTS_RATIO DESC LIMIT 10'
         connection.query(syn,(error,result,field)=>{
             if(error) console.log(error);
             else{
-                console.log(result);
+                // console.log(result);
                 res.send(result);
             }
         })    
