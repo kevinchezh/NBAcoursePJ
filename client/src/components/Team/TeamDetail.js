@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Chart} from 'react-google-charts';
 import * as actions from '../../actions';
 import PlayerDetail from '../Player/PlayerDetail';
+import TrivialCard from '../Trivial/TrivialCard';
 import _ from 'lodash';
 import '../../Styles/team.css';
 class TeamDetail extends Component {
@@ -11,9 +12,7 @@ class TeamDetail extends Component {
         if(this.state.showDetail) {
             return (
                 <div>
-
                     <button className = 'btn btn-outline-secondary' onClick = {()=>this.setState({ showDetail: false })}>Back</button>
-
                     <PlayerDetail />
                 </div>
             )
@@ -25,8 +24,16 @@ class TeamDetail extends Component {
                         <h3 className = 'detailTeamName'>{this.props.teamDetail[0].TEAM_NAME}</h3>
                         {/* <Link to='/' className = 'btn btn-outline-secondary'>Back</Link> */}
                     </div>
-                    {this.renderTeamDetail()}
-                    {this.drawChart()}
+                    <div className = 'row'>
+                        <div className = 'col-11'>
+                            {this.renderTeamDetail()}
+                            {this.drawChart()}
+                        </div>
+                        <div className = 'col-1'>
+                            <TrivialCard  />
+                        </div>
+                    </div>
+                    
                     <div>
                     {this.renderPlayerDetail()}
                     </div>
