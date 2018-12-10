@@ -10,8 +10,8 @@ class TeamDetail extends Component {
         if(this.state.showDetail) {
             return (
                 <div>
-                    {/* <PlayerDetail /> */}
-                    zai gai gai
+                    <button className = 'btn btn-outline-secondary' onClick = {()=>this.setState({ showDetail: false })}>Back</button>
+                    <PlayerDetail />
                 </div>
             )
         }
@@ -45,6 +45,7 @@ class TeamDetail extends Component {
                                 onClick = {()=>{
                                     console.log(element.PLAYER);
                                     this.setState({showDetail: true});
+                                    this.props.fetchPlayerDetail(element.PLAYER);
                                     // this.props.fetchPlayerDetail(element.PLAYER);
                                 }}>
                             {element.PLAYER}
