@@ -10,7 +10,10 @@
     margin-left:10px;
     text-align: center;
 }
-
+.teamIcon{
+    height:100px;
+    width: 100px;
+}
 /* .detailButton{
     margin-top: 10px;
     margin-left:0;
