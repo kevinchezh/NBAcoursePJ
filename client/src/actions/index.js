@@ -9,6 +9,7 @@ import axios from 'axios';
 
 
 export const fetchPlayer = (value) => async dispatch => {
+    console.log(value);
     const res = await axios.get('/server/player/' + value.playerName +'/' + value.season
     , {
         params:

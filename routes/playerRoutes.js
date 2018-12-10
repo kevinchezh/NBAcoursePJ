@@ -151,7 +151,7 @@ module.exports = app => {
         if(req.query.playerName!=undefined) {
             syn+= " and PLAYER = '" + req.query.playerName +"' "
         }
-        if(parseInt(req.query.year) > 0 ){
+        if(req.query.year!="Selected Year"  && parseInt(req.query.year) > 0 ){
             syn += " and year =  " + parseInt(req.query.year);
         }
         if(parseInt(req.query.PTSlo) >= 0){
