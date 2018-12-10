@@ -1,9 +1,10 @@
 import React, {Component}  from 'react';
 import * as actions from '../../actions';
 import {reduxForm, Field} from 'redux-form';
-import FilterField from './TeamFilterField';
+
 import TeamList from './TeamList'
 import _ from 'lodash';
+import '../../Styles/team.css';
 
 class TeamForm extends Component {
     render() {
@@ -11,19 +12,19 @@ class TeamForm extends Component {
             <div>
                 {/* <TeamList /> */}
                 <form onSubmit = {this.props.handleSubmit(value => {console.log(value)})}>
-                <Field name="teamName" component="select" >
+                <Field classname="teamSearch1" name="teamName" component="select" >
                     <option>Select Team</option>
                     <TeamList />
                 </Field>
-                <Field name="year" component="select" >
+                <Field classname="teamSearch" name="year" component="select" >
                     <option>Select Year</option>
                     {this.renderYear()}
                 </Field>
-                <Field name="type" component="select" >
+                <Field classname="teamSearch" name="type" component="select" >
                     <option key="Reg" value="Reg">Regular Season</option>
                     <option key="Post" value="Post">Post Season</option>
                 </Field>
-                <button className='btn btn-primary' type='submit'>Submit</button>
+                <button className='btn btn-primary teamButton' type='submit'>Submit</button>
                 </form>
             </div>
         )

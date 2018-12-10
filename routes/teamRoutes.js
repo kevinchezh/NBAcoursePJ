@@ -38,9 +38,10 @@ module.exports = app => {
         })   
     })
     app.get('/server/team/detail/:teamName', (req,res)=>{
-        const query = `SELECT SUM(W) as sumWin, SUM(L) as sumLose
-                       FROM RegSeasonTeam 
-                       WHERE TEAM_NAME LIKE "${req.query.teamName}"`;
+        const query = sql = "select TEAM_NAME,format(AVG(W),2) as avrage_win,format(AVG(L),2) as average_loss,format(SUM(W)/(SUM(W+L)),2) as average_WPCT \
+        ,format(SUM((W+L)*FG_PCT)/SUM(W+L),2) AS average_FGPCT \
+        ,format(SUM((W+L)*PTS)/SUM(W+L),2) as average_pts,format(SUM((W+L)*AST)/SUM(W+L),2) as average_ast \
+        ,format(SUM((W+L)*REB)/SUM(W+L),2) as average_REB FROM RegSeasonTeam Where TEAM_NAME = '"+req.query.teamName+"' GROUP BY TEAM_NAME";
         connection.query(query,(error,result,field)=>{
             if(error) console.log(error);
             else{
@@ -49,10 +50,23 @@ module.exports = app => {
         })   
     })
     app.get('/server/team/detail/:teamName/player', (req,res)=>{
-        const query = `SELECT DISTINCT PLAYER, PTS, REB, AST, MIN, FG_PCT, FG3_PCT
+        const query = `SELECT DISTINCT PLAYER, year, PTS, REB, AST, MIN, FG_PCT, FG3_PCT
                        FROM RegSeasonPlayer
                        WHERE TEAM="${req.query.teamName}" AND year=${req.query.year}
                        ORDER BY PTS DESC`;
+        connection.query(query,(error,result,field)=>{
+            if(error) console.log(error);
+            else{
+                console.log(result);
+                res.send(result);
+            }
+        })   
+    })
+
+    app.get('/server/team/draw', (req,res)=>{
+        // console.log('in draw data fetch page');
+        // console.log(req.query.property);
+        var query = "select year, "+ req.query.property  + " from RegSeasonTeam where TEAM_NAME = '" + req.query.teamName + "' ORDER BY year";
         connection.query(query,(error,result,field)=>{
             if(error) console.log(error);
             else{

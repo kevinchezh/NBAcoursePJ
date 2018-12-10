@@ -3,7 +3,7 @@ import * as actions from '../../actions';
 import {connect} from 'react-redux';
 import TeamForm from './TeamForm';
 import TeamDetail from './TeamDetail';
-
+import '../../Styles/team.css';
 class TeamIndex extends Component {
     state={renderChoice:1}
     render() {
@@ -33,7 +33,7 @@ class TeamIndex extends Component {
             console.log(this.props.team);
             return this.props.team.map((oneTeam) => {
                 return (
-                    <div key={oneTeam.TEAM_ID+oneTeam.year} className="teamCard">
+                    <div key={oneTeam.TEAM_ID+oneTeam.year} className="searchResult needInline card">
                         <div className="teamCardName">
                             <button className="card-teamTitle" 
                                     onClick = {()=>{
@@ -49,10 +49,11 @@ class TeamIndex extends Component {
                     
                         <ul className="list-group list-group-flush">
                             <li className="list-group-item">year: {oneTeam.year}</li>
+                            <li className="list-group-item">W: {oneTeam.W}</li>
+                            <li className="list-group-item">L: {oneTeam.L}</li>
+                            <li className="list-group-item">W_PCT: {oneTeam.W_PCT}</li>
                             <li className="list-group-item">PTS: {oneTeam.PTS}</li>
-                            <li className="list-group-item">REB: {oneTeam.REB}</li>
-                            <li className="list-group-item">AST: {oneTeam.AST}</li>
-                            <li className="list-group-item">STL: {oneTeam.STL}</li>
+                            <li className="list-group-item">FG_PCT: {oneTeam.FG_PCT}</li>
                         </ul>
                     
                     </div>
