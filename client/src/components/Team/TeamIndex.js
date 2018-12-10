@@ -42,18 +42,18 @@ class TeamIndex extends Component {
     }
     renderSearchResult() {
         if(this.props.team.length > 0) {
-            console.log(this.props.team);
+            // console.log(this.props.team);
             return this.props.team.map((oneTeam) => {
                 return (
                     <div key={oneTeam.TEAM_ID+oneTeam.year} className="searchResult needInline card">
                         <div className="teamCardName">
                             <button className="card-teamTitle" 
                                     onClick = {()=>{
-                                        console.log(oneTeam.TEAM_NAME)
-                                        console.log(oneTeam.year);
+                                        // console.log(oneTeam.TEAM_NAME)
+                                        // console.log(oneTeam.year);
                                         this.setState({renderChoice:2});
-                                        console.log(this.props.fetchTeamDetail(oneTeam.TEAM_NAME));
-                                        console.log(this.props.fetchTeamPlayer(oneTeam.TEAM_NAME, oneTeam.year));
+                                        // console.log(this.props.fetchTeamDetail(oneTeam.TEAM_NAME));
+                                        // console.log(this.props.fetchTeamPlayer(oneTeam.TEAM_NAME, oneTeam.year));
                                     }}>
                                     {oneTeam.TEAM_NAME}
                             </button>
@@ -77,8 +77,8 @@ class TeamIndex extends Component {
 
 
 function mapStateToProps(state){
-    console.log("state Team");
-    console.log(state.team);
+    // console.log("state Team");
+    // console.log(state.team);
     return {
         team: state.team
     }

@@ -31,7 +31,7 @@ class PlayerCommon extends Component{
         )
     }
     render(){
-        console.log(this.props.commonTeammates);
+        // console.log(this.props.commonTeammates);
         
         if(this.props.commonTeammates.length>0){
             if(this.state.showDetail){

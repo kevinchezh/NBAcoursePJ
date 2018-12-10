@@ -57,10 +57,10 @@ class PlayerIndex extends Component {
     }
     renderPlayerCompare(){
         if(this.props.compare.length>0){
-            console.log(this.props.compare[0][0]);
+            // console.log(this.props.compare[0][0]);
             var one = this.props.compare[0][0];
             var two = this.props.compare[1][0];
-            console.log(two);
+            // console.log(two);
             var data = [
                 ['Player',one.PLAYER,{ role: 'annotation' }, two.PLAYER,{ role: 'annotation' }],
                 ['PTS', parseFloat(one.PTS), one.PTS, parseFloat(two.PTS), two.PTS],

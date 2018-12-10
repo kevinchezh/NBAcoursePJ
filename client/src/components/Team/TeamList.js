@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 class TeamList extends Component {
     render() {
         this.fetchTeamRes()
-        console.log(this.props)
+        // console.log(this.props)
         if(this.props.teamList.length > 0) {
             return this.props.teamList.map((teamList) => {
                 return (
@@ -21,7 +21,7 @@ class TeamList extends Component {
 
     fetchTeamRes() {
         fetchTeamList('wang');
-        console.log('fetchSUccess');
+        // console.log('fetchSUccess');
     }
 }
 

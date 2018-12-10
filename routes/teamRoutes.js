@@ -57,7 +57,7 @@ module.exports = app => {
         connection.query(query,(error,result,field)=>{
             if(error) console.log(error);
             else{
-                console.log(result);
+                // console.log(result);
                 res.send(result);
             }
         })   
@@ -70,7 +70,7 @@ module.exports = app => {
         connection.query(query,(error,result,field)=>{
             if(error) console.log(error);
             else{
-                console.log(result);
+                // console.log(result);
                 res.send(result);
             }
         })   

@@ -25,7 +25,7 @@ class TrivialDetail extends Component{
 
             <p className = 'content'>Here are the full list: </p>
             {_.map(this.props.trivial, oneRow => {
-                console.log(Object.keys(oneRow).length);
+                // console.log(Object.keys(oneRow).length);
                 const keyNum = Object.keys(oneRow).length;
                 var i = 0;
                 
@@ -59,7 +59,7 @@ class TrivialDetail extends Component{
         )
     }
     render(){
-        console.log(this.props.id);
+        // console.log(this.props.id);
         return (
             <div className = 'container'>  
             {this.renderQueryResult()}
