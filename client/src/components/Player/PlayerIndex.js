@@ -17,6 +17,7 @@ class PlayerIndex extends Component {
             return (
                 <div className='showDetail'>
                     {/* <Route path = "/player/detail" component={PlayerDetail} /> */}
+                    <button className = 'btn btn-outline-secondary' onClick = {()=>this.setState({ showDetail: false })}>Back</button>
                     <PlayerDetail />   
                 </div>                       
             )      
