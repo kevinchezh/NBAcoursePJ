@@ -13,7 +13,7 @@ import Profile from './Profile/Profile';
 //allow components to call action creaters
 import {connect} from 'react-redux';
 import * as actions from '../actions';
-
+import PlayerCommon from './Player/PlayerCommon'
 
 class App extends Component {
 	//when this component mounts up, use the action creater to fetch the user
@@ -28,6 +28,7 @@ class App extends Component {
 				
 				<Switch>
 					<Route path = "/trivial/detail" component = {TrivialDetail} />
+					<Route exact path = "/player/commonTeammates" component={PlayerCommon} />
 					<Route path = "/player/index" component={PlayerIndex} />
 					<Route path = "/team/index" component={TeamIndex} />
 					<Route exact path="/" component={Landing} />

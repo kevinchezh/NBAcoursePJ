@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Chart} from 'react-google-charts';
 import * as actions from '../../actions';
 import _ from 'lodash';
-import {Link} from 'react-router-dom';
+
 import '../../Styles/player.css';
 import TrivialCard from '../Trivial/TrivialCard';
 class PlayerDetail extends Component {
@@ -14,10 +14,10 @@ class PlayerDetail extends Component {
       }
 
     componentDidUpdate(prevProps,prevState){
-        console.log("update did ");
-        console.log(prevProps)
-        console.log(prevState)
-        console.log(this.state.season);
+        // console.log("update did ");
+        // console.log(prevProps)
+        // console.log(prevState)
+        // console.log(this.state.season);
         if(this.state.season !== prevState.season){
             const value = {playerName:this.props.playerDetail[0].PLAYER,
                 season:this.state.season};
@@ -204,7 +204,8 @@ class PlayerDetail extends Component {
                 <div>
                     <div className = 'playerStats'>
                         <h3 className = 'detailPlayerName'>{this.props.playerDetail[0].PLAYER}</h3>
-                        <Link to='/' className = 'btn btn-outline-secondary'>Back</Link>
+                        {/* <Link to='/' className = 'btn btn-outline-secondary'>Back</Link> */}
+                        {/* <button className = 'btn btn-outline-secondary' onClick = {()=>this.setState({ season: '' })}>Back</button> */}
                     </div>
                     <div className='row'>
                         

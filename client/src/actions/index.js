@@ -1,5 +1,9 @@
 
-import {FETCH_PLAYER, FETCH_PLAYER_DETAIL,FETCH_CHART_DATA, FETCH_USER, FETCH_TRIVIAL, SHOW_TRIVIAL_DETAIL, FETCH_PLAYER_COMPARE, FETCH_TEAM, FETCH_TEAM_LIST, FETCH_TEAM_DETAIL, FETCH_TEAM_PLAYER, FETCH_TEAM_CHART} from './types';
+
+import {FETCH_PLAYER, FETCH_PLAYER_DETAIL,FETCH_CHART_DATA, FETCH_USER, FETCH_TRIVIAL, 
+    SHOW_TRIVIAL_DETAIL, FETCH_PLAYER_COMPARE, FETCH_TEAM, FETCH_TEAM_LIST, FETCH_TEAM_DETAIL, 
+    FETCH_TEAM_PLAYER,FETCH_COMMON_TEAMMATES, FETCH_TEAM_CHART} from './types';
+
 //make ajax request to the backend API
 import axios from 'axios';
 
@@ -29,8 +33,8 @@ export const fetchPlayer = (value) => async dispatch => {
 }
 
 export const fetchPlayerDetail = (playerName) => async dispatch => {
-    // console.log("detail action");
-    // console.log(playerName);
+    console.log("detail action");
+    console.log(playerName);
 
     const res = await axios.get('/server/player/detail/' + playerName);
 
@@ -41,7 +45,15 @@ export const fetchPlayerDetail = (playerName) => async dispatch => {
         }
     )
 }
-
+export const fetchCommonTeammates = (playerOne, playerTwo) => async dispatch => {
+    const res = await axios.get('/server/player/commonTeammates/' + playerOne + '/' + playerTwo);
+    dispatch(
+        {
+            type:FETCH_COMMON_TEAMMATES,
+            payload: res.data
+        }
+    )
+}
 export const fetchPlayerCompare = (playerOne, playerTwo) => async dispatch =>{
     const res1 = await axios.get('/server/player/detail/' + playerOne);
     const res2 = await axios.get('/server/player/detail/' + playerTwo);

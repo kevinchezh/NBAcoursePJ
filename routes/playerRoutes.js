@@ -17,13 +17,32 @@ connection.connect(function(err) {
   console.log('connected as id ' + connection.threadId);
 });
 module.exports = app => {
+    app.get('/server/player/commonTeammates/:playerOne/:playerTwo', (req,res)=>{
+        var P1 = req.params.playerOne;
+        var P2 = req.params.playerTwo;
+        console.log(P1);
+        console.log(P2);
+        var query = "SELECT T1.Player \
+        FROM (select DISTINCT P1.PLAYER \
+        FROM RegSeasonPlayer P1 join RegSeasonPlayer P2 ON P1.year = P2.year and P1.TEAM =P2.TEAM \
+        WHERE P2.PLAYER="+"'"+P1+"'"+" AND P1.PLAYER!="+"'"+P1+"') T1" +" join (SELECT DISTINCT P3.PLAYER \
+        FROM RegSeasonPlayer P3 join RegSeasonPlayer P4 ON P3.year = P4.year and P3.TEAM = P4.TEAM \
+        WHERE P4.PLAYER = " + "'" + P2 +"'"+" AND P3.PLAYER != "+ "'"+P2+ "') T2 on T1.PLAYER = T2.PLAYER"
+        
+        connection.query(query,(error,result,field)=>{
+            if(error) console.log(error);
+            else{
+                console.log(result);
+                res.send(result);
+            }
+        })
+    })
     //here I handler trivial routes as well since there is not much routes for this one
     app.get('/server/trivial/:id',(req,res)=>{
         console.log("in trivial fetch page");
         console.log(req.params);
         const getQuery = ()=>{
             console.log(req.params.id);
-            
         };
         const query = (
             function(){switch(req.params.id){
