@@ -52,8 +52,8 @@ class TeamIndex extends Component {
                                         // console.log(oneTeam.TEAM_NAME)
                                         // console.log(oneTeam.year);
                                         this.setState({renderChoice:2});
-                                        // console.log(this.props.fetchTeamDetail(oneTeam.TEAM_NAME));
-                                        // console.log(this.props.fetchTeamPlayer(oneTeam.TEAM_NAME, oneTeam.year));
+                                        this.props.fetchTeamDetail(oneTeam.TEAM_NAME);
+                                        this.props.fetchTeamPlayer(oneTeam.TEAM_NAME, oneTeam.year);
                                     }}>
                                     {oneTeam.TEAM_NAME}
                             </button>
