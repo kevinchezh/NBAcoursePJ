@@ -63,6 +63,24 @@ module.exports = app => {
         })   
     })
 
+    app.get('/server/team/history/:teamName/player', (req,res)=>{
+        const query = "select T.TEAM_NAME,P.PLAYER, count(P.year) as time, round(sum(P.PTS*P.GP), 0) as total_pts, round((sum(P.PTS*P.GP) / sum(P.GP)), 2) as avg_pts, round(sum(P.AST*P.GP),0) AS total_ast, \
+        round(sum(P.REB*P.GP),0) AS total_reb, format(avg(P.FG_PCT),2) as avg_pct,format(sum(P.PTS*P.GP) /T2.team_pts,3) as pts_rate,\
+        format(sum(P.AST*P.GP)/ T2.team_ast,3) as ast_rate,\
+        format(sum(P.REB*P.GP)/T2.team_reb,3) as reb_rate,  round(round(avg(P.FG_PCT),2) - T2.team_fgpct, 2) as fg_diff,T2.team_pts \
+        FROM (RegSeasonPlayer P join RegSeasonTeam T on P.TEAM = T.TEAM_NAME AND P.year = T.year) \
+        join (select sum(PTS*(W+L)) as team_pts,sum(AST*(W+L)) as team_ast, sum(REB*(W+L)) as team_reb,format(avg(FG_PCT),2) as team_fgpct,TEAM_NAME \
+        FROM RegSeasonTeam Group by TEAM_NAME) T2 on T.TEAM_NAME = T2.TEAM_NAME \
+        WHERE T.TEAM_NAME = '" + req.query.teamName + "' GROUP BY P.PLAYER ORDER BY time desc";
+        connection.query(query,(error,result,field)=>{
+            if(error) console.log(error);
+            else{
+                console.log(result);
+                res.send(result);
+            }
+        })   
+    })
+
     app.get('/server/team/draw', (req,res)=>{
         // console.log('in draw data fetch page');
         // console.log(req.query.property);

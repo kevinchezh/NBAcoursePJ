@@ -31,7 +31,8 @@ class Profile extends Component {
 									// console.log(this.props.auth.favoritePlayer);
 									this.setState({showDetail: false});
 									this.setState({showTeamDetail: true});
-                                    this.props.fetchTeamDetail(this.props.auth.favoriteTeam);
+									this.props.fetchTeamDetail(this.props.auth.favoriteTeam);
+									this.props.fetchHistoryPlayer(this.props.auth.favoriteTeam);
                                     // this.props.fetchPlayerDetail(element.PLAYER);
                                 }}>{this.props.auth.favoriteTeam}</a>
                 		</strong>
