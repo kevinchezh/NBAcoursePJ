@@ -33,13 +33,17 @@ app.use(cookieSession({
   // Cookie Options
   maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days of cookie
 }))
-
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(passport.initialize());
+app.use(bodyParser.json());
 app.use(passport.session());
 
 require("./routes/authRoutes")(app);
 const playerRoutes = require("./routes/playerRoutes");
 playerRoutes(app);
+const teamRoutes = require("./routes/teamRoutes");
+teamRoutes(app);
+
 
 const PORT = 5000;
 app.listen(PORT);

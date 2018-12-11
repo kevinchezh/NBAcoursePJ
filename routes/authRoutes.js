@@ -1,4 +1,9 @@
+const mongoose = require('mongoose');
 const passport = require("passport");
+const User =require("../models/User").User;
+const requireLogin = require("../middlewares/requireLogin");
+
+
 module.exports = app =>{
 	app.get('/',
 		(req, res) => {
@@ -27,5 +32,29 @@ module.exports = app =>{
 
 	app.get('/api/current_user', (req, res) => {
 		res.send(req.user);
+	});
+
+	app.post('/api/editProfile', requireLogin, (req, res) => {
+		const { favoritePlayer, favoriteTeam } = req.body;
+		try{
+			User.findById(req.user.id, function (err, user) {
+				// console.log(user);
+  				if (err){
+  					console.log(err);
+  				} else{
+  					user.favoritePlayer = favoritePlayer;
+  					user.favoriteTeam = favoriteTeam;
+  					user.save(function (err, updatedUser) {
+    					if (err){
+    						console.log(err);
+  						} else{
+    						res.send(updatedUser);
+    					}
+  					});
+  				}
+			});
+		} catch (err) {
+			res.status(422).send(err);	
+	}
 	});
 }
