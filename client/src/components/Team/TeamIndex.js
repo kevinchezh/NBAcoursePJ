@@ -3,6 +3,7 @@ import * as actions from '../../actions';
 import {connect} from 'react-redux';
 import TeamForm from './TeamForm';
 import TeamDetail from './TeamDetail';
+import {TeamUrl} from './TeamUrl';
 import '../../Styles/team.css';
 import TrivialCard from '../Trivial/TrivialCard'
 class TeamIndex extends Component {
@@ -11,10 +12,17 @@ class TeamIndex extends Component {
         if(this.state.renderChoice === 1) {
             return (
                 <div className = 'row'>
+                    <div className='teamTitle'>Team Search</div>
                     <div className = 'col-9'>
-                        <TeamForm />
-                        {this.renderButton()}
-                        {this.renderSearchResult()}
+                        <div className='teamForm'>
+                            <TeamForm />
+                        </div>
+                        <div className='buttonList'>
+                            {this.renderButton()}
+                        </div>
+                        <div className='searchResult'>
+                            {this.renderSearchResult()}
+                        </div>
                     </div>
                     <div className = 'col-3'>
                         <TrivialCard  />
@@ -43,13 +51,16 @@ class TeamIndex extends Component {
     }
 
     renderButton() {
-        return (
-            <button id="boston" class="boston" onClick={() => {
-                this.setState({renderChoice:2});
-                this.props.fetchTeamDetail("Boston Celtics");
-            }}>
-            <img className = 'teamIcon' src="http://content.sportslogos.net/logos/6/213/full/slhg02hbef3j1ov4lsnwyol5o.png" /></button>
-        )
+        return TeamUrl.map((element) => {
+            return (
+                <button id={element.teamName} class={element.teamName} onClick={() => {
+                    this.setState({renderChoice:2});
+                    this.props.fetchTeamDetail(element.teamName);
+                    this.props.fetchHistoryPlayer(element.teamName);
+                }}>
+                <img className = 'teamIcon' src={element.url} /></button>
+            )
+        })
     }
 
     renderSearchResult() {

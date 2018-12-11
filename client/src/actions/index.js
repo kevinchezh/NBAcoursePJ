@@ -2,7 +2,7 @@
 
 import {FETCH_PLAYER, FETCH_PLAYER_DETAIL,FETCH_CHART_DATA, FETCH_USER, FETCH_TRIVIAL, 
     SHOW_TRIVIAL_DETAIL, FETCH_PLAYER_COMPARE, FETCH_TEAM, FETCH_TEAM_LIST, FETCH_TEAM_DETAIL, 
-    FETCH_TEAM_PLAYER,FETCH_COMMON_TEAMMATES, FETCH_TEAM_CHART} from './types';
+    FETCH_TEAM_PLAYER,FETCH_COMMON_TEAMMATES, FETCH_TEAM_CHART, FETCH_HISTORY_PLAYER} from './types';
 
 //make ajax request to the backend API
 import axios from 'axios';
@@ -157,13 +157,19 @@ export const fetchTeamPlayer = (teamName, year) => async dispatch => {
     })
 }
 
-// export const identifyProperty = (value) => async dispatch => {
-//         const val = {
-//             property:value,
-//             p
-//         }
-// }
-
+export const fetchHistoryPlayer = (teamName) => async dispatch => {
+    // console.log("fetch lalalalalalal detail successful");
+    // console.log(year);
+    const res = await axios.get('/server/team/history/:' + teamName + '/player', {
+        params:{
+            teamName
+        }
+    });
+    dispatch({
+        type: FETCH_HISTORY_PLAYER,
+        payload: res.data
+    })
+}
 
 export const fetchTrivialDetail = (trivialID) => async dispatch =>{
     const res = await axios.get('/server/trivial/'+trivialID);

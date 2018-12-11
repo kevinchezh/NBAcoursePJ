@@ -1,20 +1,23 @@
-.teamSearch1{
-    margin-top: 20px;
-    margin-bottom: 5px;
-    width: 500px;
-    height: 200px;
-}
+
 .teamButton{
-    margin-top: 10px;
     margin-right:0px;
     margin-left:10px;
     text-align: center;
 }
 .teamIcon{
+    margin: 10px;
     height:100px;
     width: 100px;
 }
-/* .detailButton{
-    margin-top: 10px;
-    margin-left:0;
-} */
+.teamForm{
+    margin: 40px;
+    /* height:100px;
+    width: 100px; */
+}
+.teamTitle{
+    font-size: 30px;
+    margin-top: 30px;
+    display: block;
+    margin-right: 300px;
+    margin-left: 30px;
+}

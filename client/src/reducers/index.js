@@ -9,6 +9,7 @@ import teamDetailReducer from './teamDetailReducer'
 import teamListReducer from './teamListReducer';
 import teamPlayerReducer from './teamPlayerReducer';
 import teamChartReducer from './teamChartReducer';
+import teamHistoryPlayerReducer from './teamHistoryPlayerReducer';
 
 import trivialReducer from './trivialReducer'
 import trivialDetailReducer from './trivialDetailReducer'
@@ -26,6 +27,7 @@ export default combineReducers({
     teamList: teamListReducer,
     team: teamReducer,
     teamPlayer: teamPlayerReducer,
+    teamHistoryPlayer: teamHistoryPlayerReducer,
     teamDetail: teamDetailReducer,
     teamChart: teamChartReducer,
 

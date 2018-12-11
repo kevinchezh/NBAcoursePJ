@@ -143,7 +143,6 @@ class TeamDetail extends Component {
                     <div key={element.PLAYER} className="card-body needInline card">
                         <button className="card-title" 
                                 onClick = {()=>{
-                                    // console.log(element.PLAYER);
                                     this.setState({showDetail: true});
                                     this.props.fetchPlayerDetail(element.PLAYER);
 
@@ -161,6 +160,35 @@ class TeamDetail extends Component {
                     </div>
                 )
             })
+        } else if(this.props.teamHistoryPlayer.length > 0) {
+            return this.props.teamHistoryPlayer.map((element) => {
+                return (
+                    <div key={element.PLAYER} className="card-body needInline card">
+                    <button className="card-title" 
+                            onClick = {()=>{
+                                this.setState({showDetail: true});
+                                this.props.fetchPlayerDetail(element.PLAYER);
+
+                            }}>
+                        {element.PLAYER}
+                    </button>
+
+                    <ul className="list-group list-group-flush">
+                        <li className="list-group-item">serivce length: {element.time}</li>
+                        <li className="list-group-item">total_pts: {element.total_pts}</li>
+                        <li className="list-group-item">avg_pts: {element.avg_pts}</li>
+                        <li className="list-group-item">avg_pct: {element.avg_pct}</li>
+                        <li className="list-group-item">pts_rate: {element.pts_rate}</li>
+                        <li className="list-group-item">fg_pct_diff: {element.fg_diff}</li>
+                        
+                    </ul>
+                </div>
+                )
+            })
+        } else {
+            return (
+                <div>NO result</div>
+            )
         }
     }
 
@@ -171,6 +199,7 @@ function mapStateToProps(state){
     return {
         teamDetail: state.teamDetail,
         teamPlayer: state.teamPlayer,
+        teamHistoryPlayer: state.teamHistoryPlayer,
         teamChart: state.teamChart
     } 
     
