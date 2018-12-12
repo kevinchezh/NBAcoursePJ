@@ -2,7 +2,7 @@
 
 import {FETCH_PLAYER, FETCH_PLAYER_DETAIL,FETCH_CHART_DATA, FETCH_USER, FETCH_TRIVIAL, 
     SHOW_TRIVIAL_DETAIL, FETCH_PLAYER_COMPARE, FETCH_TEAM, FETCH_TEAM_LIST, FETCH_TEAM_DETAIL, 
-    FETCH_TEAM_PLAYER,FETCH_COMMON_TEAMMATES, FETCH_TEAM_CHART, FETCH_HISTORY_PLAYER} from './types';
+    FETCH_TEAM_PLAYER,FETCH_COMMON_TEAMMATES, FETCH_TEAM_CHART, FETCH_HISTORY_PLAYER, FETCH_PLAYER_FANTASY, FETCH_5PLAYER_FANTASY} from './types';
 
 //make ajax request to the backend API
 import axios from 'axios';
@@ -195,5 +195,26 @@ export const editProfile = async (values) => {
     if(values.favoritePlayer && values.favoriteTeam){
         await axios.post('/api/editProfile', values);
     }
+}
+
+export const fetchPlayerForFantasy = (playerName) => async dispatch => {
+    const res = await axios.get('/server/fantasy/' + playerName);
+    dispatch(
+        {
+            type: FETCH_PLAYER_FANTASY,
+            payload: res.data
+        }
+    )
+}
+
+export const fetchPlayerForFiveFantasy = (values) => async dispatch => {
+    const route = '/server/fivePlayerFantasy/' + values.Player1 + '/' + values.Player2 + '/' + values.Player3 + '/' + values.Player4 + '/' + values.Player5;
+    const res = await axios.get(route);
+    dispatch(
+        {
+            type: FETCH_5PLAYER_FANTASY,
+            payload: res.data
+        }
+    )
 }
 

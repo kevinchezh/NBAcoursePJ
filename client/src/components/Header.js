@@ -15,6 +15,9 @@ class Header extends Component{
                 return[
                 <div>
                     <button className="btn btn-dark my-2 my-sm-0">
+                        <a href="/fantasyTeam">Fantasy Team</a>
+                    </button>
+                    <button className="btn btn-dark my-2 my-sm-0">
                         <a href="/profile">My Profile</a>
                     </button>
                     <button className="btn btn-dark my-2 my-sm-0">

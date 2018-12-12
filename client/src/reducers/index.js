@@ -9,13 +9,16 @@ import teamDetailReducer from './teamDetailReducer'
 import teamListReducer from './teamListReducer';
 import teamPlayerReducer from './teamPlayerReducer';
 import teamChartReducer from './teamChartReducer';
-import teamHistoryPlayerReducer from './teamHistoryPlayerReducer';
 
 import trivialReducer from './trivialReducer'
 import trivialDetailReducer from './trivialDetailReducer'
 import playerCompareReducer from './playerCompareReducer';
 import {reducer as profileEditForm} from 'redux-form';
 import authReducer from './authReducer';
+import {reducer as FantasyFormReducer} from 'redux-form';
+import fantasySearchReducer from './fantasySearchReducer';
+import fantasy5SearchReducer from './fantasy5SearchReducer';
+
 
 export default combineReducers({
     player: playerReducer,
@@ -27,7 +30,6 @@ export default combineReducers({
     teamList: teamListReducer,
     team: teamReducer,
     teamPlayer: teamPlayerReducer,
-    teamHistoryPlayer: teamHistoryPlayerReducer,
     teamDetail: teamDetailReducer,
     teamChart: teamChartReducer,
 
@@ -37,6 +39,10 @@ export default combineReducers({
     //auth is the key in the state store
     //auth will be manufactured by authReducer
     auth: authReducer,
-    profileform: profileEditForm
-
+    profileform: profileEditForm,
+    //the reducer output will be stored on the key state object
+    //like state.auth.blahblah
+    fantasyForm: FantasyFormReducer,
+    fantasySearch: fantasySearchReducer,
+    fantasy5Search: fantasy5SearchReducer,
 });
