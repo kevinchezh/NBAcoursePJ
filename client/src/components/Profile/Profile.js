@@ -28,7 +28,7 @@ class Profile extends Component {
                 	</h3>
                 	<h3>your favorite team is <strong>
                 		<a href="#" onClick = {()=>{
-									// console.log(this.props.auth.favoritePlayer);
+									console.log(this.props.auth.favoriteTeam);
 									this.setState({showDetail: false});
 									this.setState({showTeamDetail: true});
 									this.props.fetchTeamDetail(this.props.auth.favoriteTeam);
