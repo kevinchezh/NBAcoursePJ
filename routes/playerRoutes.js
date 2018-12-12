@@ -122,7 +122,7 @@ module.exports = app => {
         })   
     })
     app.get('/server/player/detail/:playerName', (req,res) => {
-        // console.log('in player detail routes');
+        console.log('in player detail routes');
         // console.log(req.params);
         var query = sql = "SELECT PLAYER, format(SUM(GP*PTS)/SUM(GP),1) as PTS, \
         format(SUM(GP*AST)/SUM(GP),1) as AST,format(SUM(GP*REB)/SUM(GP),1) as REB, \
@@ -196,5 +196,28 @@ module.exports = app => {
     // app.get('/apx', requireLogin, (req, res) => {
     //     res.send("you are logged innnnnnnnnn");
     // })
-    
+    app.get('/server/fantasy/:playerName', (req,res) => {
+        var query  = "SELECT s.2018season as salary, r.Player,r.Speed,r.Midrange,r.Finishing,r.3Pt as three_shooting,r.Dribble,r.PostScoring,r.Rebound,r.Defense \
+FROM Ratings r join Salary s on r.Player = s.Player where s.Player = " +"'"+ req.params.playerName +"'"
+        connection.query(query,(error,result,field)=>{
+            if(error) console.log(error);
+            else{
+                // console.log(result);
+                res.send(result);
+            }
+        })    
+    })
+
+    app.get('/server/fivePlayerFantasy/:playerName1/:playerName2/:playerName3/:playerName4/:playerName5', (req,res) => {
+        var query = "SELECT s.2018season as salary, r.Player,r.Speed,r.Midrange,r.Finishing,r.3Pt as three_pt,r.Dribble,r.PostScoring,r.Rebound,r.Defense \
+FROM Ratings r join Salary s on r.Player = s.Player where s.Player = " +"'"+ req.params.playerName1 +"'" +" or s.Player = " +"'"+ req.params.playerName2 +"'\
+ or s.Player = " +"'"+ req.params.playerName3 +"'"+" or s.Player = " +"'"+ req.params.playerName4 +"'" +" or s.Player = " +"'"+ req.params.playerName5 +"'"
+        connection.query(query,(error,result,field)=>{
+            if(error) console.log(error);
+            else{
+                // console.log(result);
+                res.send(result);
+            }
+        })    
+    })
 }

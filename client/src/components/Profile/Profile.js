@@ -12,7 +12,7 @@ class Profile extends Component {
             case null:
                 return;
             case false:
-                return <p>you need to login</p>;
+                return <h1>you need to login</h1>;
             default:
                 return(
                 <div>
