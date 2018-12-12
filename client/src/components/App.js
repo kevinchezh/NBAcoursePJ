@@ -13,6 +13,7 @@ import Profile from './Profile/Profile';
 import {connect} from 'react-redux';
 import * as actions from '../actions';
 import PlayerCommon from './Player/PlayerCommon'
+import FantasyTeam from './FantasyTeam/FantasyTeam'
 
 class App extends Component {
 	//when this component mounts up, use the action creater to fetch the user
@@ -33,6 +34,7 @@ class App extends Component {
 					<Route exact path="/" component={Landing} />
 					<Route exact path="/SearchResult" component={SearchResult} />
 					<Route exact path="/profile" component={Profile} />
+					<Route path="/fantasyTeam" component={FantasyTeam} />
 				</Switch>
 			</div>
 			</BrowserRouter>
