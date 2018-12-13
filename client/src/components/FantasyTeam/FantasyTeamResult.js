@@ -17,21 +17,29 @@ class FantasyTeamResult extends Component {
 					<br />
 					<div><strong>{this.props.formValues.Player2}</strong></div>
 					<div>Defense: {this.props.fTeam[1].Defense}</div>
+					<div>PostScoring: {this.props.fTeam[1].PostScoring}</div>
+					<div>Midrange: {this.props.fTeam[1].Midrange}</div>
 					<div>Rebound: {this.props.fTeam[1].Rebound}</div>
 
 					<br />
 					<div><strong>{this.props.formValues.Player3}</strong></div>
 					<div>Defense: {this.props.fTeam[2].Defense}</div>
+					<div>PostScoring: {this.props.fTeam[2].PostScoring}</div>
+					<div>Midrange: {this.props.fTeam[2].Midrange}</div>
 					<div>Rebound: {this.props.fTeam[2].Rebound}</div>
 
 					<br />
 					<div><strong>{this.props.formValues.Player4}</strong></div>
 					<div>Defense: {this.props.fTeam[3].Defense}</div>
+					<div>PostScoring: {this.props.fTeam[3].PostScoring}</div>
+					<div>Midrange: {this.props.fTeam[3].Midrange}</div>
 					<div>Rebound: {this.props.fTeam[3].Rebound}</div>
 
 					<br />
 					<div><strong>{this.props.formValues.Player5}</strong></div>
 					<div>Defense: {this.props.fTeam[4].Defense}</div>
+					<div>PostScoring: {this.props.fTeam[4].PostScoring}</div>
+					<div>Midrange: {this.props.fTeam[4].Midrange}</div>
 					<div>Rebound: {this.props.fTeam[4].Rebound}</div>
 				</div>
 		</div>
@@ -44,7 +52,7 @@ class FantasyTeamResult extends Component {
 				return(
 					<div>
 						{this.renderFormResult()}
-						<h3>Total Salary: {totalSalary/100000000} billion dollars/year</h3>
+						<h3>Total Salary: {(totalSalary/1000000000).toFixed(2)} billion dollars/year</h3>
 						<h3>You do not have enough money!!</h3>
 						<button className="btn btn-primary"
 							onClick={() => this.props.onCancel()}

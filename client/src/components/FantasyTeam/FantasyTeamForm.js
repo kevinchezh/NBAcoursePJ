@@ -38,7 +38,7 @@ class FantasyTeamForm extends Component {
 		return(
 		<div>
 			<br />
-			<h2>You have 1 billion dollars/year</h2>
+			<h2>You have 0.1 billion dollars/year</h2>
 			<br />
 			<form className=" searchResult needInline card"
 				onSubmit={
